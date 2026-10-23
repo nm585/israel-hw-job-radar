@@ -155,5 +155,27 @@ def score_job(job: Job, company_priority: int = 0) -> Job:
     return job
 
 
+def allows_no_prior_experience(job: Job) -> bool:
+    """Fail closed: positive no-experience evidence, with no contradictory requirement."""
+    text = f"{job.title}\n{job.description}".lower()
+    for word, number in (("one", "1"), ("two", "2"), ("three", "3"), ("four", "4"), ("five", "5"), ("six", "6"), ("seven", "7"), ("eight", "8"), ("nine", "9"), ("ten", "10")):
+        text = re.sub(r"\b" + word + r"\b", number, text)
+    if any(re.search(p, job.title, re.I) for p in SENIOR_PATTERNS):
+        return False
+    # Remove zero-minimum ranges before checking positive year/month requirements.
+    clean = re.sub(r"\b0\s*[-–]\s*\d+\s*(?:years?|months?)\s*(?:of\s*)?(?:professional\s*|prior\s*|relevant\s*)?experience", "", text)
+    if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)(?:\s+of)?\s+(?:(?:relevant|professional|prior|industry|hands-on|work)\s+)?(?:experience|in\b|working\b|developing\b|designing\b)", clean):
+        return False
+    if re.search(r"experience\s*(?:of|:|minimum|at least)?\s*[1-9]\d*\s*\+?\s*(?:years?|months?)|[1-9]\d*\s*(?:שנות|שנים|חודשי)\s*ניסיון", clean):
+        return False
+    if re.search(r"(?:must have|required|requires|minimum)\s+(?:prior|previous|professional|industry|commercial|work)\s+experience|(?:prior|previous|professional|industry|commercial|work)\s+experience\s+(?:is\s+)?required", clean):
+        return False
+    return bool(re.search(
+        r"\bno\s+(?:(?:prior|previous|professional|work|industry)\s+)*experience\s+(?:is\s+)?(?:required|needed|necessary)\b"
+        r"|\b(?:prior|previous|professional|work|industry)\s+experience\s+(?:is\s+)?not\s+required\b"
+        r"|\b0\s*(?:[-–]\s*\d+)?\s*years?\s+(?:of\s+)?(?:professional\s+|work\s+)?experience\b"
+        r"|ללא\s+(?:צורך\s+ב)?ניסיון(?:\s+קודם)?|לא\s+נדרש\s+ניסיון", text))
+
+
 def is_candidate(job: Job, min_score: int = 48) -> bool:
-    return job.score >= min_score
+    return job.score >= min_score and allows_no_prior_experience(job)
