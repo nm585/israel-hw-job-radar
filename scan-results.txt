@@ -1,0 +1,70 @@
+100 HIGH   | Amazon / Annapurna Labs | Electrical Engineering Graduate | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10403805/electrical-engineering-graduate
+ 95 HIGH   | CEVA                   | CAD/Emulation Graduate Engineer | Israel | https://www.ceva-ip.com/career/position/BF.077/
+ 90 HIGH   | Amazon / Annapurna Labs | Junior SW Engineer - Virtual Platforms | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10582342/junior-sw-engineer-virtual-platforms
+ 89 HIGH   | Amazon / Annapurna Labs | Junior Verification Engineer | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10542015/junior-verification-engineer
+ 88 HIGH   | Marvell                | Design Verification- Intern | Petah-Tikva | https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers/job/Petah-Tikva/Design-Verification--Intern_2604479
+ 88 HIGH   | Marvell                | Design Verification - Intern | Petah-Tikva | https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers/job/Petah-Tikva/Design-Verification---Intern_2604481-1
+ 87 HIGH   | Amazon / Annapurna Labs | Software Engineer Student, Virtual Platforms, Annapurna Labs | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10556590/software-engineer-student-virtual-platforms-annapurna-labs
+ 87 HIGH   | Amazon / Annapurna Labs | DFT Engineer | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10516549/dft-engineer
+ 87 HIGH   | Amazon / Annapurna Labs | Formal Verification Engineer, Annapurna Labs | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10579756/formal-verification-engineer-annapurna-labs
+ 87 HIGH   | Amazon / Annapurna Labs | CPU Verification Engineer, Verification Team | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10484026/cpu-verification-engineer-verification-team
+ 87 HIGH   | Amazon / Annapurna Labs | Chip Design Engineer, Nitro Team | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10513749/chip-design-engineer-nitro-team
+ 86 HIGH   | Nuvoton Israel         | Jr. CAD Engineer Nuvoton-Herzliya  ·  Full-time  ·  Entry-level | Israel | https://nuvoton.co.il/careers/co/cad/6E.E60/jr-cad-engineer/all
+ 85 HIGH   | Wiliot                 | Logic Digital Verification Engineer Israel - Caesarea | Israel | https://www.wiliot.com/positions/position-2a_f46
+ 82 HIGH   | Amazon / Annapurna Labs | Chip Design Integration Lead, Nitro Chip Design Team | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10418161/chip-design-integration-lead-nitro-chip-design-team
+ 78 HIGH   | Amazon / Annapurna Labs | Formal Verification Engineer, Annapurna Labs | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10583059/formal-verification-engineer-annapurna-labs
+ 77 HIGH   | Amazon / Annapurna Labs | Chip Design Engineer, Graviton Team | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10584981/chip-design-engineer-graviton-team
+ 77 HIGH   | Amazon / Annapurna Labs | Post Silicon Dev Engineer | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10531389/post-silicon-dev-engineer
+ 75 HIGH   | Amazon / Annapurna Labs | Embedded Software Engineer - Nitro , Annapurna Labs | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10521736/embedded-software-engineer-nitro-annapurna-labs
+ 74 MEDIUM | Wiliot                 | Firmware Engineer Israel - Caesarea | Israel | https://www.wiliot.com/positions/position-6a_d6d
+ 72 MEDIUM | Amazon / Annapurna Labs | Software Engineer, System Verification, Graviton Team | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10575582/software-engineer-system-verification-graviton-team
+ 72 MEDIUM | Apple                  | Wireless SoC Design Verification Engineer | Israel | https://jobs.apple.com/en-il/details/200687696
+ 70 MEDIUM | Amazon / Annapurna Labs | Tech Lead Embedded Eng, Annapurna Labs | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10528187/tech-lead-embedded-eng-annapurna-labs
+ 69 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer, Graviton | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10570339/embedded-software-engineer-graviton
+ 69 MEDIUM | Apple                  | Design Verification Engineer | Herzliya | https://jobs.apple.com/en-il/details/200690048
+ 69 MEDIUM | Apple                  | Design Verification Engineer | Herzliya | https://jobs.apple.com/en-il/details/200690051
+ 69 MEDIUM | Apple                  | CAD Design Verification Engineer | Jerusalem | https://jobs.apple.com/en-il/details/200686340
+ 69 MEDIUM | Nuvoton Israel         | Chip Design Engineer Nuvoton-Herzliya  ·  Full-time  ·  Intermediate | Israel | https://nuvoton.co.il/careers/co/chip-design/60.D63/chip-design-engineer/all
+ 68 MEDIUM | Qualcomm               | Design Verification Engineer  - Haifa | Haifa District, Israel, Haifa | https://careers.qualcomm.com/careers/job/446721455859
+ 68 MEDIUM | Qualcomm               | RTL Verification Engineer  - Haifa | Haifa District, Israel, Haifa | https://careers.qualcomm.com/careers/job/446720747145
+ 67 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer, Annapurna Labs | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10586170/embedded-software-engineer-annapurna-labs
+ 67 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer, Annapurna Labs | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/3155020/embedded-software-engineer-annapurna-labs
+ 61 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer , EFA Annapurna | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10415533/embedded-software-engineer-efa-annapurna
+ 61 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer , EFA Annapurna | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10525878/embedded-software-engineer-efa-annapurna
+ 60 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer - Nitro , Annapurna Labs | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10561329/embedded-software-engineer-nitro-annapurna-labs
+ 58 MEDIUM | Arm                    | Machine Learning Software Engineer | Israel | https://careers.arm.com/job/raanana/machine-learning-software-engineer/33099/100378769328
+ 57 MEDIUM | Amazon / Annapurna Labs | HW Validation Student, Nitro Team, Annapurna Labs | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10533872/hw-validation-student-nitro-team-annapurna-labs
+ 56 MEDIUM | Amazon / Annapurna Labs | Verification Engineer | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10467279/verification-engineer
+    WARN: Asks for 4+ years of experience
+ 56 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10458621/embedded-software-engineer
+ 56 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer, EFA Team | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10496770/embedded-software-engineer-efa-team
+ 56 MEDIUM | Amazon / Annapurna Labs | SW Automation Student, Annapurna Labs | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10503596/sw-automation-student-annapurna-labs
+ 56 MEDIUM | Amazon / Annapurna Labs | Verification Engineer | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/3144789/verification-engineer
+    WARN: Asks for 4+ years of experience
+ 56 MEDIUM | Amazon / Annapurna Labs | Verification Engineer | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10503245/verification-engineer
+    WARN: Asks for 4+ years of experience
+ 56 MEDIUM | Amazon / Annapurna Labs | SW Development Engineer, AWS Elastic Network Adapter Firmware team, ENA | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10454437/sw-development-engineer-aws-elastic-network-adapter-firmware-team-ena
+ 56 MEDIUM | CEVA                   | Formal verification engineer | Israel | https://www.ceva-ip.com/career/position/5E.173/
+    WARN: Asks for 3+ years of experience
+ 55 MEDIUM | Amazon / Annapurna Labs | DFT Engineer | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10496508/dft-engineer
+    WARN: Asks for 4+ years of experience
+ 55 MEDIUM | Amazon / Annapurna Labs | Chip Design Engineer, Graviton Chip Design Team | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10484809/chip-design-engineer-graviton-chip-design-team
+    WARN: Asks for 3+ years of experience
+ 54 MEDIUM | Amazon / Annapurna Labs | Verification Engineer, Nitro Team | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10576950/verification-engineer-nitro-team
+ 54 MEDIUM | Amazon / Annapurna Labs | Verification Engineer, Nitro Team | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10576948/verification-engineer-nitro-team
+ 53 MEDIUM | Apple                  | Embedded Engineer for the Silicon validation team | Herzliya | https://jobs.apple.com/en-il/details/200686347
+ 53 MEDIUM | Apple                  | Embedded Engineer for Networking Silicon Validation Team | Herzliya | https://jobs.apple.com/en-il/details/200676944
+ 53 MEDIUM | Apple                  | Silicon Validation Embedded Engineer - GPU IP | Jerusalem | https://jobs.apple.com/en-il/details/200666054
+ 52 MEDIUM | Amazon / Annapurna Labs | System Integration Student, Nitro Team, Annapurna Labs | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10577304/system-integration-student-nitro-team-annapurna-labs
+ 52 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer, SRD Annapurna Labs | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10535796/embedded-software-engineer-srd-annapurna-labs
+ 52 MEDIUM | Amazon / Annapurna Labs | Embedded Software Engineer - Networking drivers, ENA team | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/10375571/embedded-software-engineer-networking-drivers-ena-team
+ 49 LOW    | Amazon / Annapurna Labs | Software Embedded Engineer, Nitro team | Haifa, Haifa, ISR | https://www.amazon.jobs/en/jobs/3183762/software-embedded-engineer-nitro-team
+ 49 LOW    | Amazon / Annapurna Labs | Chip Design Engineer, Graviton Team | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/3156914/chip-design-engineer-graviton-team
+    WARN: Asks for 4+ years of experience
+ 49 LOW    | Amazon / Annapurna Labs | Chip Design Engineer, Nitro Chip Design Team | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/10570154/chip-design-engineer-nitro-chip-design-team
+    WARN: Asks for 4+ years of experience
+ 48 LOW    | Amazon / Annapurna Labs | SoC Power Analysis and Optimization Engineer, Graviton Team | Tel Aviv-Yafo, Tel Aviv, ISR | https://www.amazon.jobs/en/jobs/3155214/soc-power-analysis-and-optimization-engineer-graviton-team
+    WARN: Asks for 4+ years of experience
+ 48 LOW    | CEVA                   | CAD/Emulation Engineer | Israel | https://www.ceva-ip.com/career/position/68.37A/
+    WARN: Asks for 3+ years of experience
+SCAN COMPLETE: 59 candidate matches before human review

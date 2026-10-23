@@ -1,0 +1,9 @@
+# Optional discovery backup — paste individual queries into Google Alerts.
+# These are intentionally secondary to direct official ATS monitoring.
+
+"Element Labs" (Israel OR Caesarea OR "Tel Aviv") (RTL OR DFT OR verification OR ASIC OR SoC OR hardware OR firmware OR student OR intern)
+"Astera Labs" Israel (RTL OR verification OR silicon OR hardware OR intern OR student)
+"Sony Semiconductor Israel" (student OR intern OR "digital design" OR verification OR firmware)
+"LightSolver" (Israel OR "Tel Aviv") (hardware OR FPGA OR embedded OR engineer OR intern)
+("hardware student" OR "design verification student" OR "RTL student" OR "DFT student") Israel semiconductor
+("FPGA intern" OR "ASIC intern" OR "SoC intern" OR "verification intern") Israel
