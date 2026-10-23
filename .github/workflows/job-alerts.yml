@@ -1,0 +1,67 @@
+name: Israel hardware job radar
+
+on:
+  schedule:
+    # 61 daily slots; IANA timezone follows Israel daylight-saving changes.
+    - cron: "31,46 8 * * *"
+      timezone: Asia/Jerusalem
+    - cron: "1,16,31,46 9-22 * * *"
+      timezone: Asia/Jerusalem
+    - cron: "1,31 23 * * *"
+      timezone: Asia/Jerusalem
+    - cron: "1 0 * * *"
+      timezone: Asia/Jerusalem
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview matches; send nothing and do not update the database"
+        type: boolean
+        default: false
+
+concurrency:
+  group: israel-hw-job-radar
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Restore seen-job database
+        uses: actions/cache/restore@v4
+        with:
+          path: data/seen_jobs.db
+          key: seen-jobs-${{ github.run_id }}
+          restore-keys: |
+            seen-jobs-
+
+      - name: Scan official career sources
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python run.py --dry-run --no-seed -v
+          else
+            python run.py -v
+          fi
+
+      - name: Save seen-job database
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/seen_jobs.db
+          key: seen-jobs-${{ github.run_id }}
