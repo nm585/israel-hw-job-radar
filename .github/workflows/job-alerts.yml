@@ -17,6 +17,10 @@ on:
         description: "Preview matches; send nothing and do not update the database"
         type: boolean
         default: false
+      include_existing:
+        description: "Send all current matching jobs once, including previously seen jobs"
+        type: boolean
+        default: false
 
 concurrency:
   group: israel-hw-job-radar
@@ -52,9 +56,12 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           DRY_RUN: ${{ inputs.dry_run }}
+          INCLUDE_EXISTING: ${{ inputs.include_existing }}
         run: |
           if [ "$DRY_RUN" = "true" ]; then
             python run.py --dry-run --no-seed -v
+          elif [ "$INCLUDE_EXISTING" = "true" ]; then
+            python run.py --include-seen
           else
             python run.py -v
           fi
