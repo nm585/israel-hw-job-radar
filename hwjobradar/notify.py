@@ -1,5 +1,6 @@
 import html
 import requests
+import time
 
 
 def format_job(job) -> str:
@@ -32,6 +33,8 @@ def send_telegram(token: str, chat_id: str, text: str) -> None:
 def notify_jobs(token: str, chat_id: str, jobs: list) -> None:
     for job in sorted(jobs, key=lambda j: j.score, reverse=True):
         send_telegram(token, chat_id, format_job(job))
+        if token and chat_id:
+            time.sleep(1.1)
 
 
 def notify_text(token: str, chat_id: str, text: str) -> None:
