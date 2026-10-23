@@ -10,7 +10,7 @@ from .storage import Storage
 log = logging.getLogger("hwjobradar")
 
 
-def run(config_path=None, dry_run=False, source_filter=None, no_seed=False):
+def run(config_path=None, dry_run=False, source_filter=None, no_seed=False, include_seen=False):
     cfg = load_config(config_path)
     storage = Storage(cfg["db_path"])
     token, chat_id = telegram_credentials()
@@ -46,7 +46,7 @@ def run(config_path=None, dry_run=False, source_filter=None, no_seed=False):
             score_job(job, priority)
             if job.score < max(15, min_score - 30):
                 continue
-            if storage.seen(job.id):
+            if not include_seen and storage.seen(job.id):
                 continue
             job, open_now = enrich_job(job)
             if not open_now:
@@ -57,7 +57,7 @@ def run(config_path=None, dry_run=False, source_filter=None, no_seed=False):
             new_to_mark.append(job)
 
     # Default first run seeds current jobs silently, preventing an alert storm.
-    if first_run and not no_seed and not dry_run:
+    if first_run and not no_seed and not include_seen and not dry_run:
         for job in new_to_mark:
             storage.mark_seen(job)
         log.info("Seeded %d current candidate-ish jobs; no notifications on first run.", len(new_to_mark))
@@ -86,7 +86,8 @@ def cli():
     p.add_argument("--source", default=None)
     p.add_argument("--no-seed", action="store_true", help="Alert/print existing matches on an empty database")
     p.add_argument("-v", "--verbose", action="store_true")
+    p.add_argument("--include-seen", action="store_true", help="Send all current matches, including previously seen jobs (manual catch-up)")
     args = p.parse_args()
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
                         format="%(asctime)s %(levelname)-7s %(message)s")
-    run(args.config, args.dry_run, args.source, args.no_seed)
+    run(args.config, args.dry_run, args.source, args.no_seed, args.include_seen)
