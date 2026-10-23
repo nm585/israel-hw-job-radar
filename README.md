@@ -182,3 +182,7 @@ pytest -q
 ## License / attribution
 
 MIT. The repository preserves the copyright notice from the upstream `Esteban-PG/Job-alert-bot` project and adds attribution for this derivative.
+
+### One-time catch-up
+
+In Actions → Israel hardware job radar → Run workflow, enable `include_existing` to send all currently matching open jobs, including previously seen postings. Leave `dry_run` unchecked to deliver Telegram alerts. The option defaults to false, so subsequent scheduled runs continue sending only new matches. Locally: `python run.py --include-seen`.
