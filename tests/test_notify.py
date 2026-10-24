@@ -23,3 +23,15 @@ def test_independent_labels(title, description, track, hours):
     assert job_labels(job) == (track, hours)
     message = format_job(job)
     assert track in message and hours in message
+
+
+@pytest.mark.parametrize("location,badge", [
+    ("Tel Aviv-Yafo, Israel", "🟢"), ("Herzliya", "🟢"), ("Ra'anana", "🟢"),
+    ("Petah-Tikva", "🟢"), ("Hod Hasharon", "🟢"), ("Kfar Saba", "🟢"),
+    ("פתח תקווה", "🟢"), ("חיפה", "🟠"), ("Jerusalem", "🟠"),
+    ("Rehovot", "🟠"), ("Be'er Sheva", "🟠"), ("Yokneam", "⚪"),
+    ("Israel", "⚪"), ("Tel Aviv / Haifa", "⚪"),
+])
+def test_location_badges(location, badge):
+    from hwjobradar.notify import location_badge
+    assert location_badge(location).startswith(badge)
