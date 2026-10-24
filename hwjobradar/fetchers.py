@@ -368,6 +368,18 @@ def fetch_html(src: dict) -> list[Job]:
 def enrich_job(job: Job, timeout: int = 20) -> tuple[Job, bool]:
     """Fetch the official job page. Returns (job, appears_open)."""
     try:
+        # Workday HTML is an empty JavaScript shell; read its official detail API.
+        match = re.match(r"https://([^.]+)\.([^.]+)\.myworkdayjobs\.com/[^/]+/([^/]+)(/job/.*)", job.url)
+        if match:
+            tenant, dc, site, path = match.groups()
+            detail_url = f"https://{tenant}.{dc}.myworkdayjobs.com/wday/cxs/{tenant}/{site}{path}"
+            response = requests.get(detail_url, headers=HEADERS, timeout=timeout)
+            if response.status_code in (404, 410):
+                return job, False
+            response.raise_for_status()
+            info = response.json().get("jobPostingInfo", {})
+            job.description = BeautifulSoup(info.get("jobDescription", ""), "html.parser").get_text(" ", strip=True)
+            return job, bool(job.description.strip())
         r = requests.get(job.url, headers=HEADERS, timeout=timeout, allow_redirects=True)
         if r.status_code >= 400:
             return job, False

@@ -171,6 +171,8 @@ def allows_no_prior_experience(job: Job) -> bool:
         return False
     # Remove zero-minimum ranges before checking positive year/month requirements.
     clean = re.sub(r"\b0\s*[-–]\s*\d+\s*(?:years?|months?)\s*(?:of\s*)?(?:professional\s*|prior\s*|relevant\s*)?experience", "", text)
+    # Time left in a degree is an education constraint, not prior work experience.
+    clean = re.sub(r"\b(?:at least\s+)?\d+\s+years?\s+(?:before|until|to)\s+graduation\b|\b\d+\s+years?\s+(?:remaining|left)\s+(?:in|of|to complete)\s+(?:the |a |your )?(?:degree|studies|program)\b", "", clean)
     if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)\b", clean):
         return False
     if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)(?:\s+of)?\s+(?:(?:relevant|professional|prior|industry|hands-on|work)\s+)?(?:experience|in\b|working\b|developing\b|designing\b)", clean):

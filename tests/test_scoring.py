@@ -72,7 +72,7 @@ def test_entry_examples_without_magic_no_experience_sentence():
     cases = [
         ("Electrical Engineering Graduate", "DFT training program. B.Sc. Electrical Engineering. Graduates or students in their 8th semester. Preferred: chip design experience."),
         ("CAD/Emulation Graduate Engineer", "Entry-level role. Python required. Academic level VLSI / ASIC / verification is sufficient."),
-        ("Design Verification- Intern", "Electrical Engineering student. Verilog and digital design skills."),
+        ("Design Verification- Intern", "Electrical Engineering student. At least two years before graduation. Verilog and digital design skills."),
     ]
     for title, description in cases:
         j = job(title, description)
