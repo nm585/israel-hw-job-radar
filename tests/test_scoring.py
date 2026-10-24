@@ -77,7 +77,7 @@ def test_entry_examples_without_magic_no_experience_sentence():
     for title, description in cases:
         j = job(title, description)
         score_job(j, 12)
-        assert is_candidate(j), title
+        assert allows_no_prior_experience(j), title
         for requirement in ["Minimum 4 years of experience", "Previous professional experience required", "Requires two years of experience"]:
             assert not allows_no_prior_experience(job(title, description + ". " + requirement))
     assert not allows_no_prior_experience(job("Design Verification Intern", ""))
@@ -121,3 +121,15 @@ def test_junior_notifications_temporarily_excluded():
         j = job(title, "RTL FPGA verification")
         j.score = 100
         assert is_candidate(j)
+
+
+def test_entry_and_graduate_notifications_temporarily_excluded():
+    blocked = ["Electrical Engineering Graduate", "CAD/Emulation Graduate Engineer", "Entry-level RTL Engineer", "New Grad ASIC Engineer", "Recent Graduate Engineer", "מהנדס בוגר", "משרת כניסה FPGA"]
+    for title in blocked:
+        j = job(title, "RTL FPGA verification. No experience required.")
+        j.score = 100
+        assert not is_candidate(j), title
+    for title in ["Graduate Student Intern", "RTL Student", "Verification Internship", "Part-time FPGA Engineer"]:
+        j = job(title, "RTL FPGA verification")
+        j.score = 100
+        assert is_candidate(j), title

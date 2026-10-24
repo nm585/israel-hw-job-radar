@@ -194,4 +194,7 @@ def allows_no_prior_experience(job: Job) -> bool:
 def is_candidate(job: Job, min_score: int = 48) -> bool:
     if re.search(r"\bjunior\b|\bjr\.?\b|ג[׳']?וניור", job.title, re.I):
         return False
+    entry = r"\bentry[ -]?level\b|\b(?:new|recent) grad(?:uate)?s?\b|\bgraduates?\b|משרת?\s+כניסה|משרות\s+כניסה|בוגר(?:ים|ות)?"
+    if re.search(entry, job.title, re.I) and not is_student_or_part_time(job.title):
+        return False
     return job.score >= min_score and allows_no_prior_experience(job)
