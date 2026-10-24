@@ -1,16 +1,5 @@
 # Manual discovery only. These entries are NOT polled by the scanner.
 watchlist:
-- name: Element Labs (Israel)
-  priority: 12
-  area: AI chips / inference / networking silicon
-  locations:
-  - Caesarea
-  - Tel Aviv
-  note: Do not confuse with Element Labs / LM Studio in New York. Israeli company has no verified public careers
-    feed yet.
-  discovery_queries:
-  - '"Element Labs" Israel RTL OR verification OR chip OR hardware student'
-  - '"Element Labs" Caesarea jobs semiconductor'
 - name: Astera Labs Israel
   priority: 10
   area: AI connectivity silicon / PCIe / CXL / Ethernet
