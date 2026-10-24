@@ -160,7 +160,7 @@ def score_job(job: Job, company_priority: int = 0) -> Job:
 
 
 def allows_no_prior_experience(job: Job) -> bool:
-    """Fail closed: positive no-experience evidence, with no contradictory requirement."""
+    """Entry-track titles qualify unless the posting requires prior experience."""
     text = f"{job.title}\n{job.description}".lower()
     for word, number in (("one", "1"), ("two", "2"), ("three", "3"), ("four", "4"), ("five", "5"), ("six", "6"), ("seven", "7"), ("eight", "8"), ("nine", "9"), ("ten", "10")):
         text = re.sub(r"\b" + word + r"\b", number, text)
@@ -180,11 +180,10 @@ def allows_no_prior_experience(job: Job) -> bool:
     clean = re.sub(r"\bno\s+(?:(?:prior|previous|professional|work|industry)\s+)*experience\s+(?:is\s+)?(?:required|needed|necessary)\b", "", clean)
     if re.search(r"(?:must have|required|requires|minimum)\s+(?:prior|previous|professional|industry|commercial|work)\s+experience|(?:prior|previous|professional|industry|commercial|work)\s+experience\s+(?:is\s+)?required", clean):
         return False
-    return bool(re.search(
-        r"\bno\s+(?:(?:prior|previous|professional|work|industry)\s+)*experience\s+(?:is\s+)?(?:required|needed|necessary)\b"
-        r"|\b(?:prior|previous|professional|work|industry)\s+experience\s+(?:is\s+)?not\s+required\b"
-        r"|\b0\s*(?:[-–]\s*\d+)?\s*years?\s+(?:of\s+)?(?:professional\s+|work\s+)?experience\b"
-        r"|ללא\s+(?:צורך\s+ב)?ניסיון(?:\s+קודם)?|לא\s+נדרש\s+ניסיון", text))
+    # An explicit entry-track title is evidence of eligibility; do not demand
+    # an artificial "no experience required" sentence. Missing details still fail closed.
+    return bool(job.description.strip())
+
 
 
 def is_candidate(job: Job, min_score: int = 48) -> bool:

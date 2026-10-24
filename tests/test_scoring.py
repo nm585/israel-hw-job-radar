@@ -44,13 +44,13 @@ def test_firmware_student_can_pass():
 
 def test_no_experience_filter_is_mandatory_even_for_high_scores():
     from hwjobradar.scoring import allows_no_prior_experience
-    for description in ["4 years of experience", "Requires four years of experience", "1+ years in ASIC design", "Prior work experience required", "Junior welcome", "No experience required. Minimum 4 years of experience", "נדרש 4 שנות ניסיון"]:
+    for description in ["4 years of experience", "Requires four years of experience", "1+ years in ASIC design", "Prior work experience required", "No experience required. Minimum 4 years of experience", "נדרש 4 שנות ניסיון"]:
         j = job("Junior RTL Engineer", description)
         j.score = 100
         assert not is_candidate(j), description
     for description in ["No prior experience required", "No professional experience is required", "Prior experience is not required", "0-2 years of experience", "ללא ניסיון קודם"]:
         assert allows_no_prior_experience(job("Junior RTL Engineer", description)), description
-    assert not allows_no_prior_experience(job("Student Intern", "RTL and FPGA skills"))
+    assert allows_no_prior_experience(job("Student Intern", "RTL and FPGA skills"))
 
 
 def test_non_entry_title_is_blocked_even_with_no_experience_text():
@@ -65,3 +65,19 @@ def test_hardware_project_skills_are_recognized():
     assert _sum_matches("VHDL RISC-V ModelSim SignalTap Quartus CDC", SKILL_BONUS) == 29
     assert _sum_matches("High-level synthesis", DOMAIN_WEIGHTS) >= 20
     assert _sum_matches("HLS", DOMAIN_WEIGHTS) >= 20
+
+
+def test_entry_examples_without_magic_no_experience_sentence():
+    from hwjobradar.scoring import allows_no_prior_experience
+    cases = [
+        ("Electrical Engineering Graduate", "DFT training program. B.Sc. Electrical Engineering. Graduates or students in their 8th semester. Preferred: chip design experience."),
+        ("CAD/Emulation Graduate Engineer", "Entry-level role. Python required. Academic level VLSI / ASIC / verification is sufficient."),
+        ("Design Verification- Intern", "Electrical Engineering student. Verilog and digital design skills."),
+    ]
+    for title, description in cases:
+        j = job(title, description)
+        score_job(j, 12)
+        assert is_candidate(j), title
+        for requirement in ["Minimum 4 years of experience", "Previous professional experience required", "Requires two years of experience"]:
+            assert not allows_no_prior_experience(job(title, description + ". " + requirement))
+    assert not allows_no_prior_experience(job("Design Verification Intern", ""))

@@ -70,8 +70,10 @@ def run(config_path=None, dry_run=False, source_filter=None, no_seed=False, incl
                 print("    WARN:", "; ".join(job.warnings))
         return candidates
 
+    log.info("Scan summary: %d matching jobs; include_existing=%s; Telegram configured=%s", len(candidates), include_seen, bool(token and chat_id))
     if candidates:
         notify_jobs(token, chat_id, candidates)
+        log.info("Notification stage completed for %d matching jobs", len(candidates))
 
     # Mark only after notification stage. If Telegram raises, the run fails and jobs retry next run.
     for job in new_to_mark:

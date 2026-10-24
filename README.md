@@ -195,3 +195,5 @@ The main badge groups student/internship roles together as 🟢, also used for e
 Only postings with a student/intern/junior/entry-level/graduate title and explicit no-prior-experience eligibility (including a zero-year minimum) pass the notification filter. Positive experience requirements and unclear eligibility are blocked regardless of score. Student/junior titles alone are insufficient. This conservative filter may omit suitable jobs when their pages do not state eligibility clearly.
 
 A separate location badge uses 🟢 for the Tel Aviv/Herzliya/Raanana/Petah Tikva/Hod Hasharon/Kfar Saba area, 🟠 for Haifa/Jerusalem/Rehovot/Beer Sheva, and ⚪ for other or unclear locations. Mixed central/orange locations are marked unclear. This labels location preferences without excluding cities.
+
+Entry filter update: student, intern, internship, graduate, junior and entry-level titles with a retrieved description may qualify without an explicit no-experience sentence. Positive experience requirements still reject the posting. Empty descriptions are rejected.

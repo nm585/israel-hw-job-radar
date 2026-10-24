@@ -7,3 +7,5 @@
 - Zero vacancies are not treated as proof of failure: valid empty structured feeds remain active. Job counts are before relevance filtering and do not imply suitable openings.
 - Watchlist is manual only. No complete-market coverage or exact GitHub execution timing is promised.
 - No Telegram credentials, local databases, environment files or dependency environments are included in the package.
+
+Entry filter update: student, intern, internship, graduate, junior and entry-level titles with a retrieved description may qualify without an explicit no-experience sentence. Positive experience requirements still reject the posting. Empty descriptions are rejected.
