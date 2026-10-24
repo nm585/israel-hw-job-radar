@@ -55,7 +55,7 @@ def test_no_experience_filter_is_mandatory_even_for_high_scores():
 
 def test_non_entry_title_is_blocked_even_with_no_experience_text():
     from hwjobradar.scoring import allows_no_prior_experience
-    assert not allows_no_prior_experience(job("RTL Engineer", "No prior experience required"))
+    assert allows_no_prior_experience(job("RTL Engineer", "No prior experience required"))
     assert not allows_no_prior_experience(job("Junior RTL Engineer", "No experience required. 4 years Verilog."))
 
 
@@ -81,3 +81,12 @@ def test_entry_examples_without_magic_no_experience_sentence():
         for requirement in ["Minimum 4 years of experience", "Previous professional experience required", "Requires two years of experience"]:
             assert not allows_no_prior_experience(job(title, description + ". " + requirement))
     assert not allows_no_prior_experience(job("Design Verification Intern", ""))
+
+
+def test_nvidia_plain_engineer_with_optional_experience():
+    from hwjobradar.scoring import allows_no_prior_experience
+    j = job("RTL Design Engineer, DFT", "B.Sc. Electrical Engineering. Exposure to RTL implementation. Familiarity with verification tools. Ways to stand out: Prior Design or Verification experience.")
+    score_job(j, 12)
+    assert is_candidate(j)
+    assert not allows_no_prior_experience(job("Chip Design Engineer", "2+ years of experience in dynamic verification"))
+    assert not allows_no_prior_experience(job("Network RDMA Algorithms Architect", "2+ years of experience"))

@@ -197,3 +197,5 @@ Only postings with a student/intern/junior/entry-level/graduate title and explic
 A separate location badge uses 🟢 for the Tel Aviv/Herzliya/Raanana/Petah Tikva/Hod Hasharon/Kfar Saba area, 🟠 for Haifa/Jerusalem/Rehovot/Beer Sheva, and ⚪ for other or unclear locations. Mixed central/orange locations are marked unclear. This labels location preferences without excluding cities.
 
 Entry filter update: student, intern, internship, graduate, junior and entry-level titles with a retrieved description may qualify without an explicit no-experience sentence. Positive experience requirements still reject the posting. Empty descriptions are rejected.
+
+Coverage/filter correction: Workday country facets are traversed recursively, including locationHierarchy1, before paging. A Junior/Graduate title is no longer mandatory; relevant non-senior engineering roles with complete descriptions and no detected mandatory prior experience may qualify. Preferred experience is distinct from mandatory requirements. Numeric experience checks remain conservative.

@@ -9,3 +9,5 @@
 - No Telegram credentials, local databases, environment files or dependency environments are included in the package.
 
 Entry filter update: student, intern, internship, graduate, junior and entry-level titles with a retrieved description may qualify without an explicit no-experience sentence. Positive experience requirements still reject the posting. Empty descriptions are rejected.
+
+Coverage/filter correction: Workday country facets are traversed recursively, including locationHierarchy1, before paging. A Junior/Graduate title is no longer mandatory; relevant non-senior engineering roles with complete descriptions and no detected mandatory prior experience may qualify. Preferred experience is distinct from mandatory requirements. Numeric experience checks remain conservative.

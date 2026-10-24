@@ -51,9 +51,17 @@ def fetch_workday(src: dict) -> list[Job]:
     first = post({}, 0, "")
     applied = {}
     facets = first.get("facets") or []
-    for facet in facets:
+    def walk_facets(items):
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            if item.get("facetParameter"):
+                yield item
+            yield from walk_facets(item.get("values") or [])
+
+    for facet in walk_facets(facets):
         param = (facet.get("facetParameter") or "")
-        if param not in ("locationCountry", "Location_Country", "country"):
+        if param not in ("locationCountry", "Location_Country", "country", "locationHierarchy1"):
             continue
         ids = []
         for v in facet.get("values") or []:
