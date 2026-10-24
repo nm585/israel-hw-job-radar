@@ -168,6 +168,7 @@ def allows_no_prior_experience(job: Job) -> bool:
         return False
     if re.search(r"experience\s*(?:of|:|minimum|at least)?\s*[1-9]\d*\s*\+?\s*(?:years?|months?)|[1-9]\d*\s*(?:שנות|שנים|חודשי)\s*ניסיון", clean):
         return False
+    clean = re.sub(r"\bno\s+(?:(?:prior|previous|professional|work|industry)\s+)*experience\s+(?:is\s+)?(?:required|needed|necessary)\b", "", clean)
     if re.search(r"(?:must have|required|requires|minimum)\s+(?:prior|previous|professional|industry|commercial|work)\s+experience|(?:prior|previous|professional|industry|commercial|work)\s+experience\s+(?:is\s+)?required", clean):
         return False
     return bool(re.search(
