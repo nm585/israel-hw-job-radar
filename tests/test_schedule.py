@@ -6,11 +6,12 @@ import yaml
 
 
 def schedules():
-    # BaseLoader retains YAML's 'on' key as a string.
     return yaml.load(Path('.github/workflows/job-alerts.yml').read_text(), Loader=yaml.BaseLoader)['on']['schedule']
 
 
-def values(field):
+def values(field, limit):
+    if field == "*":
+        return set(range(limit))
     result = set()
     for part in field.split(','):
         if '-' in part:
@@ -27,29 +28,30 @@ def test_exact_daily_slots_no_extras_or_duplicates():
         assert item['timezone'] == 'Asia/Jerusalem'
         minute, hour, *rest = item['cron'].split()
         assert rest == ['*', '*', '*']
-        for h in values(hour):
-            for m in values(minute):
+        for h in values(hour, 24):
+            for m in values(minute, 60):
                 actual[h * 60 + m] += 1
-    expected = set(range(8 * 60 + 31, 23 * 60 + 2, 15)) | {23 * 60 + 31, 1}
-    assert set(actual) == expected
-    assert len(actual) == 61
+    assert set(actual) == set(range(1, 1440, 10))
+    assert len(actual) == 144
     assert all(v == 1 for v in actual.values())
 
 
 def test_utc_mapping_including_dst_transition_days():
+    # Validate local-time membership across DST. This models clock slots, not
+    # guaranteed GitHub executions, which may be delayed/skipped by the service.
     zone = ZoneInfo('Asia/Jerusalem')
-    for date in [(2026,1,15),(2026,7,15),(2026,3,27),(2026,10,25)]:
+    for date, expected in [((2026,1,15),144), ((2026,7,15),144),
+                           ((2026,3,27),138), ((2026,10,25),150)]:
         start = datetime(*date, tzinfo=zone)
         end = start + timedelta(days=1)
         instant = start.astimezone(timezone.utc)
-        found=[]
+        found = []
         while instant < end.astimezone(timezone.utc):
-            local=instant.astimezone(zone)
+            local = instant.astimezone(zone)
             for item in schedules():
-                minute,hour,*_ = item['cron'].split()
-                if local.hour in values(hour) and local.minute in values(minute):
-                    found.append((local.hour,local.minute))
+                minute, hour, *_ = item['cron'].split()
+                if local.hour in values(hour,24) and local.minute in values(minute,60):
+                    found.append(instant)
             instant += timedelta(minutes=1)
-        assert len(found)==61
-        assert len(set(found))==61
-        assert (8,31) in found and (23,1) in found and (23,31) in found and (0,1) in found
+        assert len(found) == expected
+        assert all(b-a == timedelta(minutes=10) for a,b in zip(found,found[1:]))

@@ -2,14 +2,8 @@ name: Israel hardware job radar
 
 on:
   schedule:
-    # 61 daily slots; IANA timezone follows Israel daylight-saving changes.
-    - cron: "31,46 8 * * *"
-      timezone: Asia/Jerusalem
-    - cron: "1,16,31,46 9-22 * * *"
-      timezone: Asia/Jerusalem
-    - cron: "1,31 23 * * *"
-      timezone: Asia/Jerusalem
-    - cron: "1 0 * * *"
+    # 144 daily wall-clock slots, including nights; follows Israel DST.
+    - cron: "1,11,21,31,41,51 * * * *"
       timezone: Asia/Jerusalem
   workflow_dispatch:
     inputs:

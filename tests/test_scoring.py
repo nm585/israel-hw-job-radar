@@ -57,3 +57,11 @@ def test_non_entry_title_is_blocked_even_with_no_experience_text():
     from hwjobradar.scoring import allows_no_prior_experience
     assert not allows_no_prior_experience(job("RTL Engineer", "No prior experience required"))
     assert not allows_no_prior_experience(job("Junior RTL Engineer", "No experience required. 4 years Verilog."))
+
+
+def test_hardware_project_skills_are_recognized():
+    from hwjobradar.scoring import _sum_matches, SKILL_BONUS, DOMAIN_WEIGHTS
+    assert _sum_matches("C++", SKILL_BONUS) == 4
+    assert _sum_matches("VHDL RISC-V ModelSim SignalTap Quartus CDC", SKILL_BONUS) == 29
+    assert _sum_matches("High-level synthesis", DOMAIN_WEIGHTS) >= 20
+    assert _sum_matches("HLS", DOMAIN_WEIGHTS) >= 20

@@ -21,6 +21,7 @@ DOMAIN_WEIGHTS = {
     r"\bpost.?silicon\b": 20,
     r"\bsilicon validation\b": 20,
     r"\bemulation\b": 18,
+    r"\bhigh[ -]level synthesis\b|\bhls\b": 20,
     r"\bfirmware\b": 16,
     r"\bembedded\b": 16,
     r"\bhardware validation\b": 14,
@@ -44,15 +45,18 @@ NOISE_PATTERNS = [
 ]
 
 SKILL_BONUS = {
-    r"\bvhdl\b": 5,
+    r"\bvhdl\b": 8,
     r"\bverilog\b": 5,
     r"\bsystemverilog\b": 6,
     r"\buvm\b": 6,
-    r"\bc\+\+\b": 4,
+    r"(?<!\w)c\+\+(?!\w)": 4,
     r"\bpython\b": 4,
     r"\blinux\b": 3,
-    r"\brisc.?v\b": 5,
-    r"\bquartus\b": 3,
+    r"\brisc.?v\b": 7,
+    r"\bquartus\b": 4,
+    r"\bmodelsim\b": 4,
+    r"\bsignaltap\b": 3,
+    r"\bclock[ -]domain crossing\b|\bcdc\b": 3,
 }
 
 
