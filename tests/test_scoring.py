@@ -49,5 +49,11 @@ def test_no_experience_filter_is_mandatory_even_for_high_scores():
         j.score = 100
         assert not is_candidate(j), description
     for description in ["No prior experience required", "No professional experience is required", "Prior experience is not required", "0-2 years of experience", "ללא ניסיון קודם"]:
-        assert allows_no_prior_experience(job("RTL Engineer", description)), description
+        assert allows_no_prior_experience(job("Junior RTL Engineer", description)), description
     assert not allows_no_prior_experience(job("Student Intern", "RTL and FPGA skills"))
+
+
+def test_non_entry_title_is_blocked_even_with_no_experience_text():
+    from hwjobradar.scoring import allows_no_prior_experience
+    assert not allows_no_prior_experience(job("RTL Engineer", "No prior experience required"))
+    assert not allows_no_prior_experience(job("Junior RTL Engineer", "No experience required. 4 years Verilog."))
