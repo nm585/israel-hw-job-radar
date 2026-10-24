@@ -47,6 +47,22 @@ def job_labels(job) -> tuple[str, str]:
     return track, hours
 
 
+def location_badge(location: str) -> str:
+    text = re.sub(r"[-’'׳]", " ", (location or "").lower())
+    text = re.sub(r"\s+", " ", text)
+    central = r"tel aviv|tel aviv yafo|herzli(?:ya|a)|ra ?anana|petah[ -]?(?:tikva|tiqwa)|petach tikva|hod hasharon|kfar sa(?:ba|va)|ramat gan|givatayim|bnei brak|rosh haayin|תל אביב|הרצליה|רעננה|פתח תקו{1,2}ה|הוד השרון|כפר סבא|רמת גן|גבעתיים|בני ברק|ראש העין"
+    less = r"haifa|jerusalem|rehovot|reḥovot|be ?er sheva|beersheba|חיפה|ירושלים|רחובות|באר שבע"
+    is_central = bool(re.search(central, text))
+    is_less = bool(re.search(less, text))
+    if is_central and is_less:
+        return "⚪ אזור: מספר אזורים — יש לבדוק במודעה"
+    if is_central:
+        return "🟢 אזור: מרכז מועדף"
+    if is_less:
+        return "🟠 אזור: פחות רלוונטי"
+    return "⚪ אזור: אחר / לא צוין"
+
+
 def format_job(job) -> str:
     track, hours = job_labels(job)
     warnings = ""
@@ -56,6 +72,7 @@ def format_job(job) -> str:
     return (
         f"<b>{html.escape(job.company)}</b> — <b>{html.escape(job.title)}</b>\n"
         f"{track}\n{hours}\n"
+        f"{location_badge(job.location)}\n"
         f"📍 {html.escape(job.location or 'Israel')}"
         f"{posted}\n"
         f"🎯 Fit: <b>{job.fit}</b> ({job.score}/100)"
