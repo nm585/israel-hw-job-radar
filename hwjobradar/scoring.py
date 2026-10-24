@@ -162,8 +162,13 @@ def allows_no_prior_experience(job: Job) -> bool:
         text = re.sub(r"\b" + word + r"\b", number, text)
     if any(re.search(p, job.title, re.I) for p in SENIOR_PATTERNS):
         return False
+    entry_title = r"\bstudents?\b|\bintern(?:ship)?\b|\bjunior\b|\bjr\b|\bentry[ -]?level\b|\b(?:new|recent) grad(?:uate)?\b|\bgraduate\b|סטודנט|התמחות|מתמחה|ג[׳']?וניור|משרת כניסה"
+    if not re.search(entry_title, job.title, re.I):
+        return False
     # Remove zero-minimum ranges before checking positive year/month requirements.
     clean = re.sub(r"\b0\s*[-–]\s*\d+\s*(?:years?|months?)\s*(?:of\s*)?(?:professional\s*|prior\s*|relevant\s*)?experience", "", text)
+    if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)\b", clean):
+        return False
     if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)(?:\s+of)?\s+(?:(?:relevant|professional|prior|industry|hands-on|work)\s+)?(?:experience|in\b|working\b|developing\b|designing\b)", clean):
         return False
     if re.search(r"experience\s*(?:of|:|minimum|at least)?\s*[1-9]\d*\s*\+?\s*(?:years?|months?)|[1-9]\d*\s*(?:שנות|שנים|חודשי)\s*ניסיון", clean):
