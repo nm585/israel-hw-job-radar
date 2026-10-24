@@ -4,7 +4,7 @@ import logging
 from .config import load_config, telegram_credentials
 from .fetchers import fetch_source, enrich_job
 from .notify import notify_jobs, notify_text
-from .scoring import score_job, is_candidate
+from .scoring import score_job, is_candidate, is_student_or_part_time
 from .storage import Storage
 
 log = logging.getLogger("hwjobradar")
@@ -44,7 +44,7 @@ def run(config_path=None, dry_run=False, source_filter=None, no_seed=False, incl
         for job in jobs:
             # Early title score avoids fetching every senior/nontechnical detail page.
             score_job(job, priority)
-            if job.score < max(15, min_score - 30):
+            if job.score < max(15, min_score - 30) and not is_student_or_part_time(job.title):
                 continue
             if not include_seen and storage.seen(job.id):
                 continue

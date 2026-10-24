@@ -90,3 +90,23 @@ def test_nvidia_plain_engineer_with_optional_experience():
     assert is_candidate(j)
     assert not allows_no_prior_experience(job("Chip Design Engineer", "2+ years of experience in dynamic verification"))
     assert not allows_no_prior_experience(job("Network RDMA Algorithms Architect", "2+ years of experience"))
+
+
+def test_student_intern_and_parttime_signals_in_either_language_or_description():
+    from hwjobradar.scoring import is_student_or_part_time
+    cases = [
+        ("סטודנט להנדסה", "RTL FPGA verification"),
+        ("התמחות בחומרה", "RTL FPGA verification"),
+        ("Hardware Engineer", "Part-time position. RTL FPGA verification"),
+        ("מהנדס חומרה", "משרה חלקית. RTL FPGA verification"),
+        ("Design Engineer", "Working student in ASIC verification"),
+        ("Intern", "RTL FPGA verification"),
+    ]
+    for title, desc in cases:
+        j = job(title, desc)
+        assert is_student_or_part_time(title + " " + desc)
+        score_job(j, 0)
+        assert is_candidate(j), (title, j.score)
+        j = job(title, desc + ". Minimum 4 years of experience required.")
+        score_job(j, 0)
+        assert not is_candidate(j)

@@ -112,6 +112,10 @@ def detect_constraints(job: Job) -> None:
             job.warnings.append(f"Asks for {job.min_years_experience}+ years of experience")
 
 
+def is_student_or_part_time(text: str) -> bool:
+    return bool(re.search(r"\bstudents?\b|\bintern(?:ship)?\b|\bworking student\b|\bpart[ -]?time\b|סטודנט|התמחות|מתמחה|משרה\s+חלקית", text, re.I))
+
+
 def score_job(job: Job, company_priority: int = 0) -> Job:
     title = job.title or ""
     full = f"{title}\n{job.category}\n{job.description}"
@@ -121,7 +125,7 @@ def score_job(job: Job, company_priority: int = 0) -> Job:
     score += min(_sum_matches(full, SKILL_BONUS), 15)
     score += company_priority
 
-    if any(re.search(p, title, re.I) for p in STUDENT_PATTERNS):
+    if is_student_or_part_time(full) or any(re.search(p, title, re.I) for p in STUDENT_PATTERNS):
         score += 24
     elif re.search(r"\bengineer\b", title, re.I):
         score += 5
