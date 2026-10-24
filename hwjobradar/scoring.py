@@ -175,6 +175,7 @@ def allows_no_prior_experience(job: Job) -> bool:
     clean = re.sub(r"\b0\s*[-–]\s*\d+\s*(?:years?|months?)\s*(?:of\s*)?(?:professional\s*|prior\s*|relevant\s*)?experience", "", text)
     # Time left in a degree is an education constraint, not prior work experience.
     clean = re.sub(r"\b(?:at least\s+)?\d+\s+years?\s+(?:before|until|to)\s+graduation\b|\b\d+\s+years?\s+(?:remaining|left)\s+(?:in|of|to complete)\s+(?:the |a |your )?(?:degree|studies|program)\b", "", clean)
+    clean = re.sub(r"\b\d+\s*[- ]?\s*(?:months?|years?)\s+(?:internship|training|program|placement)\b", "", clean)
     if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)\b", clean):
         return False
     if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)(?:\s+of)?\s+(?:(?:relevant|professional|prior|industry|hands-on|work)\s+)?(?:experience|in\b|working\b|developing\b|designing\b)", clean):
@@ -191,4 +192,6 @@ def allows_no_prior_experience(job: Job) -> bool:
 
 
 def is_candidate(job: Job, min_score: int = 48) -> bool:
+    if re.search(r"\bjunior\b|\bjr\.?\b|ג[׳']?וניור", job.title, re.I):
+        return False
     return job.score >= min_score and allows_no_prior_experience(job)

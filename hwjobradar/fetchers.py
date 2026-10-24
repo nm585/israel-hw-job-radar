@@ -410,7 +410,43 @@ def enrich_job(job: Job, timeout: int = 20) -> tuple[Job, bool]:
         return job, True
 
 
+def parse_google_cards(html_text, page_url):
+    """Read official cards; never infer Israel merely from the search query."""
+    soup = BeautifulSoup(html_text, "html.parser")
+    jobs = []
+    for heading in soup.select("h3"):
+        card = heading.find_parent("li")
+        if card is None:
+            continue
+        link = card.select_one('a[href*="jobs/results/"]')
+        if link is None:
+            continue
+        location = "; ".join(x.get_text(" ", strip=True) for x in card.select(".r0wTof"))
+        if not _looks_israel(location):
+            continue
+        url = urljoin("https://www.google.com/about/careers/applications/", link["href"]).split("?")[0]
+        jobs.append(Job(id=_slug_id("google",url), title=heading.get_text(" ",strip=True), company="Google", location=location, url=url, source="Google", description=card.get_text(" ",strip=True)))
+    next_link = soup.select_one('a[aria-label="Go to next page"]')
+    return jobs, urljoin(page_url,next_link["href"]) if next_link else None
+
+
+def fetch_google(src):
+    url = src["url"]
+    found, visited = {}, set()
+    while url and url not in visited:
+        if len(visited) >= src.get("max_pages",20):
+            raise RuntimeError("Google page limit reached before all results were read")
+        visited.add(url)
+        response = requests.get(url,headers=HEADERS,timeout=30)
+        response.raise_for_status()
+        jobs, url = parse_google_cards(response.text,url)
+        for job in jobs:
+            found[job.id] = job
+    return list(found.values())
+
+
 FETCHERS = {
+    "google": fetch_google,
     "workday": fetch_workday,
     "amazon": fetch_amazon,
     "apple": fetch_apple,

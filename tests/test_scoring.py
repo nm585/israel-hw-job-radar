@@ -110,3 +110,14 @@ def test_student_intern_and_parttime_signals_in_either_language_or_description()
         j = job(title, desc + ". Minimum 4 years of experience required.")
         score_job(j, 0)
         assert not is_candidate(j)
+
+
+def test_junior_notifications_temporarily_excluded():
+    for title in ["Junior RTL Engineer", "Jr. FPGA Engineer", "ג׳וניור RTL", "גוניור FPGA"]:
+        j = job(title, "RTL FPGA verification. No experience required.")
+        j.score = 100
+        assert not is_candidate(j)
+    for title in ["RTL Student", "Verification Intern", "Part-time FPGA Engineer"]:
+        j = job(title, "RTL FPGA verification")
+        j.score = 100
+        assert is_candidate(j)

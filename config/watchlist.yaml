@@ -1,4 +1,4 @@
-# Manual discovery only. These entries are NOT polled by the scanner.
+# Manual sources awaiting verified adapters.
 watchlist:
 - name: Astera Labs Israel
   priority: 10
@@ -6,7 +6,8 @@ watchlist:
   locations:
   - Tel Aviv
   - Haifa
-  note: Official global careers page exists, but a stable Israel-only public feed was not verified.
+  note: Official global careers page exists, but a stable Israel-only public feed
+    was not verified.
   discovery_queries:
   - site:asteralabs.com/careers Israel intern hardware
   - site:asteralabs.com/careers Israel design verification silicon
@@ -15,7 +16,8 @@ watchlist:
   area: optical computing hardware
   locations:
   - Tel Aviv
-  note: Official site currently directs candidates to social channels rather than publishing a stable jobs feed.
+  note: Official site currently directs candidates to social channels rather than
+    publishing a stable jobs feed.
   discovery_queries:
   - site:lightsolver.com job hardware engineer Israel
   - '"LightSolver" careers hardware Tel Aviv'
@@ -50,41 +52,35 @@ watchlist:
   discovery_queries:
   - site:lightmatter.co careers Israel hardware photonics
   israel_presence: unverified
-- name: Google
-  official_url: https://www.google.com/about/careers/applications/jobs/results/?location=Israel
-  priority: 12
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
-  checked_on: '2026-10-23'
 - name: Samsung SIRC
   official_url: https://www.comeet.com/jobs/samsung/D4.005
   priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Texas Instruments
   official_url: https://careers.ti.com/en/sites/CX/jobs?location=Israel&locationId=300000000361478&locationLevel=country&mode=location
   priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: AMD
   official_url: https://careers.amd.com/careers-home/jobs?location=Israel
   priority: 10
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Mobileye
   official_url: https://careers.mobileye.com/jobs?team=Hardware
   priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Cadence
   official_url: https://www.cadence.com/en_US/home/company/careers.html
   priority: 8
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Tower Semiconductor
   official_url: https://towersemi.com/careers/
@@ -94,26 +90,26 @@ watchlist:
 - name: Camtek
   official_url: https://www.camtek.com/careers/open-positions/
   priority: 6
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Nova
   official_url: https://nova.co.il/location_filter/israel/
   priority: 6
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Hailo
   official_url: https://hailo.ai/company-overview/careers/
   priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: NextSilicon
   official_url: https://www.nextsilicon.com/careers/
   priority: 12
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Xsight Labs
   official_url: https://xsightlabs.com/careers
@@ -123,79 +119,80 @@ watchlist:
 - name: Speedata
   official_url: https://www.speedata.io/careers-1
   priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Pliops
   official_url: https://pliops.com/careers/
   priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: proteanTecs
   official_url: https://www.comeet.com/jobs/proteantecs/D5.00E
   priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: NeuReality
   official_url: https://www.neureality.ai/careers/
   priority: 10
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Vayyar
   official_url: https://www.vayyar.com/recruitment/
   priority: 7
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Innoviz
   official_url: https://innoviz.tech/join-us
   priority: 6
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Ramon.Space
   official_url: https://ramon.space/careers/
   priority: 8
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Credo / DustPhotonics
   official_url: https://credosemi.com/about-credo/careers/
   priority: 9
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Teramount
   official_url: https://teramount.com/careers
   priority: 5
-  note: 'Live adapter failed: HTTPSConnectionPool(host=''www.molex.com'', port=443): Read timed out. (read timeout=30)'
+  note: 'Live adapter failed: HTTPSConnectionPool(host=''www.molex.com'', port=443):
+    Read timed out. (read timeout=30)'
   checked_on: '2026-10-23'
 - name: SolarEdge
   official_url: https://corporate.solaredge.com/en/careers
   priority: 5
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Quantum Machines
   official_url: https://www.comeet.com/jobs/quantummachines/D6.000
   priority: 12
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Quantum Source
   official_url: https://www.qs-labs.com/careers
   priority: 8
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: Quantum Art
   official_url: https://www.quantum-art.tech/careers
   priority: 8
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently validated.
-    Manual review before re-enabling.
+  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
+    could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
 - name: NeuroBlade
   official_url: https://www.neuroblade.com/careers/
@@ -206,7 +203,8 @@ watchlist:
   official_url: https://chain-reaction.io/careers/
   area: ASIC / encrypted-compute accelerators
   priority: 9
-  note: Official page explicitly reports no current openings; no working posting parser can yet be validated.
+  note: Official page explicitly reports no current openings; no working posting parser
+    can yet be validated.
   checked_on: '2026-10-23'
 - name: Majestic Labs AI
   official_url: https://majestic-labs.ai/careers
@@ -218,7 +216,8 @@ watchlist:
   official_url: https://www.exaware.com/careers
   area: Embedded networking / ASIC integration
   priority: 9
-  note: Israel embedded roles published inline with email applications; needs a dedicated adapter.
+  note: Israel embedded roles published inline with email applications; needs a dedicated
+    adapter.
   checked_on: '2026-10-23'
 - name: ColorChip
   official_url: https://www.color-chip.com/careers/
@@ -236,8 +235,8 @@ watchlist:
   official_url: https://raaam-tech.com/careers/
   area: Embedded memory / semiconductor IP
   priority: 9
-  note: Also requested as RAAM Memory Technologies. Current page contains a Switzerland position; do not classify
-    it as Israeli. Israel vacancies require location verification.
+  note: Also requested as RAAM Memory Technologies. Current page contains a Switzerland
+    position; do not classify it as Israeli. Israel vacancies require location verification.
   checked_on: '2026-10-23'
   aliases:
   - RAAM Memory Technologies
@@ -246,43 +245,42 @@ watchlist:
   official_url: https://visic-tech.com/about/careers/
   area: GaN power semiconductors
   priority: 9
-  note: Official page embeds RecruitCRM; dedicated adapter required, generic HTML cannot read iframe jobs.
+  note: Official page embeds RecruitCRM; dedicated adapter required, generic HTML
+    cannot read iframe jobs.
   checked_on: '2026-10-23'
 - name: Articron
   official_url: https://articron.com/
   area: Memory-centric AI IP
   priority: 9
-  note: Israel presence NOT verified. Keep conditional only, not counted as a confirmed Israeli employer.
+  note: Israel presence NOT verified. Keep conditional only, not counted as a confirmed
+    Israeli employer.
   checked_on: '2026-10-23'
   israel_presence: unverified
 - name: Quantum Transistors
   official_url: https://quantumtransistors.com/
   area: Quantum processors / photonics
   priority: 9
-  note: 'Official technology confirmed; no reliable vacancy feed verified. Israel ecosystem reference: https://qubit-il.com/'
+  note: 'Official technology confirmed; no reliable vacancy feed verified. Israel
+    ecosystem reference: https://qubit-il.com/'
   checked_on: '2026-10-23'
 - name: Qarakal
   official_url: https://qarakal.ai/careers/
   area: Quantum hardware / control / algorithms
   priority: 9
-  note: Official jobs exist, with locations on individual pages. Dedicated detail-location parsing needed before
-    activation.
+  note: Official jobs exist, with locations on individual pages. Dedicated detail-location
+    parsing needed before activation.
   checked_on: '2026-10-23'
 - name: Q-Factor
   official_url: https://q-factor.com/
   area: Neutral-atom quantum / optics
   priority: 9
-  note: Official site confirms Tel Aviv; roles are inline with email applications, no stable posting IDs.
+  note: Official site confirms Tel Aviv; roles are inline with email applications,
+    no stable posting IDs.
   checked_on: '2026-10-23'
 - name: Molex / Teramount
   official_url: https://www.molex.com/en-us/news/molex-completes-acquisition-of-teramount-ltd
   area: Photonics / fiber-to-chip
   priority: 9
-  note: Jerusalem engineering hub confirmed. Monitor parent careers and legacy name; no reliable Israel feed verified.
-  checked_on: '2026-10-23'
-- name: Microsoft Israel
-  official_url: https://careers.microsoft.com/v2/global/en/locations/israel.html
-  area: AI accelerators / hardware / low-level software
-  priority: 9
-  note: Official Israel presence and hardware domains confirmed; public feed adapter not verified.
+  note: Jerusalem engineering hub confirmed. Monitor parent careers and legacy name;
+    no reliable Israel feed verified.
   checked_on: '2026-10-23'

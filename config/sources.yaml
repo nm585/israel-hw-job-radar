@@ -1,5 +1,4 @@
-# Official employer sources; audit 2026-10-23. Disabled definitions are retained for repair.
-# elementlabs.ai belongs to a different company; never use it for Element Labs Israel.
+# elementlabs.ai is unrelated; do not use it for Element Labs Israel.
 db_path: data/seen_jobs.db
 source_fail_alert_after: 2
 filters:
@@ -91,20 +90,6 @@ sources:
   aliases:
   - Qualcomm
   - Autotalks
-- type: html
-  name: Google
-  url: https://www.google.com/about/careers/applications/jobs/results/?location=Israel
-  base_url: https://www.google.com
-  href_regex: /about/careers/applications/jobs/results/|/about/careers/applications/jobs/
-  required_context_regex: Israel|Tel Aviv|Haifa
-  default_location: Israel
-  id_prefix: google
-  priority: 12
-  checked_on: '2026-10-23'
-  verification: empty_unverified
-  enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
 - type: apple
   name: Apple
   id_prefix: apple
@@ -124,8 +109,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Texas Instruments
   url: https://careers.ti.com/en/sites/CX/jobs?location=Israel&locationId=300000000361478&locationLevel=country&mode=location
@@ -138,8 +123,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Arm
   url: https://careers.arm.com/location/israel-jobs/33099/294640/2
@@ -163,8 +148,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Mobileye
   url: https://careers.mobileye.com/jobs?team=Hardware
@@ -177,8 +162,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Applied Materials
   url: https://jobs.appliedmaterials.com/location/israel-jobs/95/294640/2/1
@@ -218,8 +203,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Tower Semiconductor
   url: https://towersemi.com/careers/
@@ -245,8 +230,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Nova
   url: https://nova.co.il/location_filter/israel/
@@ -259,8 +244,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Nuvoton Israel
   url: https://nuvoton.co.il/careers/
@@ -295,8 +280,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: NextSilicon
   url: https://www.nextsilicon.com/careers/
@@ -309,8 +294,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Xsight Labs
   url: https://xsightlabs.com/careers
@@ -323,7 +308,8 @@ sources:
   checked_on: '2026-10-23'
   verification: error
   enabled: false
-  verification_note: 'Live adapter failed: 429 Client Error: Too Many Requests for url: https://xsightlabs.com/careers'
+  verification_note: 'Live adapter failed: 429 Client Error: Too Many Requests for
+    url: https://xsightlabs.com/careers'
 - type: html
   name: Speedata
   url: https://www.speedata.io/careers-1
@@ -336,8 +322,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Pliops
   url: https://pliops.com/careers/
@@ -350,8 +336,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: proteanTecs
   url: https://www.comeet.com/jobs/proteantecs/D5.00E
@@ -364,8 +350,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Wiliot
   url: https://www.wiliot.com/careers
@@ -400,8 +386,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: DriveNets
   url: https://drivenets.com/careers/
@@ -425,8 +411,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Arbe Robotics
   url: https://arberobotics.com/career/
@@ -461,8 +447,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Ramon.Space
   url: https://ramon.space/careers/
@@ -475,8 +461,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Credo / DustPhotonics
   url: https://credosemi.com/about-credo/careers/
@@ -489,8 +475,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Teramount
   url: https://teramount.com/careers
@@ -503,8 +489,8 @@ sources:
   checked_on: '2026-10-23'
   verification: error
   enabled: false
-  verification_note: 'Live adapter failed: HTTPSConnectionPool(host=''www.molex.com'', port=443): Read timed out.
-    (read timeout=30)'
+  verification_note: 'Live adapter failed: HTTPSConnectionPool(host=''www.molex.com'',
+    port=443): Read timed out. (read timeout=30)'
   aliases:
   - Teramount
   - Molex
@@ -530,8 +516,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: ashby
   name: Arago
   company: arago
@@ -553,8 +539,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: QuamCore
   url: https://www.quamcore.com/category/careers/
@@ -578,8 +564,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: html
   name: Quantum Art
   url: https://www.quantum-art.tech/careers
@@ -592,8 +578,8 @@ sources:
   checked_on: '2026-10-23'
   verification: empty_unverified
   enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but extraction could not be independently
-    validated. Manual review before re-enabling.
+  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
+    extraction could not be independently validated. Manual review before re-enabling.
 - type: workday
   name: Microchip / Hailo
   tenant: microchiphr
@@ -629,4 +615,19 @@ sources:
   priority: 9
   checked_on: '2026-10-23'
   verification: live_adapter_returned_jobs
+- type: google
+  name: Google
+  url: https://www.google.com/about/careers/applications/jobs/results/?location=Israel
+  priority: 12
+  verification: live_adapter_returned_jobs
+  checked_on: '2026-10-24'
+- type: html
+  name: Microsoft Israel
+  url: https://www.microsoftrnd.co.il/jobs
+  item_selector: h2 a[href]
+  href_regex: JobDetails\?JobSeqNo=\d+
+  default_location: Israel
+  priority: 10
+  verification: live_adapter_returned_jobs
+  checked_on: '2026-10-24'
 watchlist_file: config/watchlist.yaml
