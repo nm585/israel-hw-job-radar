@@ -31,7 +31,7 @@ Senior/Staff/Principal/Manager roles are heavily penalized. Explicit 3+ year exp
 
 ## Companies monitored
 
-The audited configuration contains **24 enabled sources** and **45 watchlist entries**. Counts include parent/legacy brands and are not unique employer counts. All previous company names remain represented. See [COMPANY_COVERAGE.md](COMPANY_COVERAGE.md) for the full roster, official references, acquisition aliases, and verification limitations.
+The audited configuration contains **24 enabled sources** and **44 watchlist entries**. Counts include parent/legacy brands and are not unique employer counts. Element Labs was removed at the user’s request. See [COMPANY_COVERAGE.md](COMPANY_COVERAGE.md) for the full roster, official references, acquisition aliases, and verification limitations.
 
 New coverage includes all requested names: Chain Reaction, NeuroBlade, Majestic Labs AI, Exaware, ColorChip, Newsight Imaging, Weebit Nano, RAAAM (RAAM) Memory Technologies, HiveWare, VisIC, Articron, Quantum Transistors, Qarakal, Q-Factor, and the five parent/legacy pairs. Articron remains conditional because Israel presence was not verified.
 
@@ -186,3 +186,13 @@ MIT. The repository preserves the copyright notice from the upstream `Esteban-PG
 ### One-time catch-up
 
 In Actions → Israel hardware job radar → Run workflow, enable `include_existing` to send all currently matching open jobs, including previously seen postings. Leave `dry_run` unchecked to deliver Telegram alerts. The option defaults to false, so subsequent scheduled runs continue sending only new matches. Locally: `python run.py --include-seen`.
+
+### Telegram labels
+
+The main badge groups student/internship roles together as 🟢, also used for explicitly part-time junior/entry-level roles. Explicitly full-time junior/entry-level roles use 🔵. Junior/entry-level roles with unknown or conflicting hours use ⚪. A separate hours line always shows full-time, part-time, conflicting, or unspecified, including for student/internship jobs. Career track is detected conservatively from the title; hours use explicit wording in the title/description. Student/internship never implies part-time. Existing messages are unchanged.
+
+### Mandatory no-experience filter and location preferences
+
+Only postings with explicit no-prior-experience eligibility (including a zero-year minimum) pass the notification filter. Positive experience requirements and unclear eligibility are blocked regardless of score. Student/junior titles alone are insufficient. This conservative filter may omit suitable jobs when their pages do not state eligibility clearly.
+
+A separate location badge uses 🟢 for the Tel Aviv/Herzliya/Raanana/Petah Tikva/Hod Hasharon/Kfar Saba area, 🟠 for Haifa/Jerusalem/Rehovot/Beer Sheva, and ⚪ for other or unclear locations. Mixed central/orange locations are marked unclear. This labels location preferences without excluding cities.
