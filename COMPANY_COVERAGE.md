@@ -39,7 +39,6 @@ Active means the live adapter returned jobs or a valid empty structured feed. It
 
 | Company | Official reference | Reason |
 |---|---|---|
-| Element Labs (Israel) | See discovery queries in YAML | Do not confuse with Element Labs / LM Studio in New York. Israeli company has no verified public careers feed yet. |
 | Astera Labs Israel | See discovery queries in YAML | Official global careers page exists, but a stable Israel-only public feed was not verified. |
 | LightSolver | See discovery queries in YAML | Official site currently directs candidates to social channels rather than publishing a stable jobs feed. |
 | MDA Space / SatixFy heritage team | [Source](https://mda.space/article/mda-space-completes-acquisition-of-satixfy-communications) | SatixFy is now part of MDA Space; monitor MDA Space for Israel openings. |
