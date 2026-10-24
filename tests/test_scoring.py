@@ -37,6 +37,17 @@ def test_experience_requirement_penalized():
 
 
 def test_firmware_student_can_pass():
-    j = job("Firmware Student", "Embedded C C++ Linux low-level hardware software integration")
+    j = job("Firmware Student", "Embedded C C++ Linux low-level hardware software integration. No prior experience required.")
     score_job(j, 8)
     assert is_candidate(j, 48)
+
+
+def test_no_experience_filter_is_mandatory_even_for_high_scores():
+    from hwjobradar.scoring import allows_no_prior_experience
+    for description in ["4 years of experience", "Requires four years of experience", "1+ years in ASIC design", "Prior work experience required", "Junior welcome", "No experience required. Minimum 4 years of experience", "נדרש 4 שנות ניסיון"]:
+        j = job("Junior RTL Engineer", description)
+        j.score = 100
+        assert not is_candidate(j), description
+    for description in ["No prior experience required", "No professional experience is required", "Prior experience is not required", "0-2 years of experience", "ללא ניסיון קודם"]:
+        assert allows_no_prior_experience(job("RTL Engineer", description)), description
+    assert not allows_no_prior_experience(job("Student Intern", "RTL and FPGA skills"))
