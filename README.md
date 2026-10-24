@@ -103,7 +103,7 @@ Never commit the token to the repository.
 
 Every day, in **Asia/Jerusalem**:
 
-- Every 10 minutes, 24 hours a day, at :01, :11, :21, :31, :41, :51.
+- Every 10 minutes, 24 hours a day, at :07, :17, :27, :37, :47, :57.
 - No other automatic schedule triggers: **144 wall-clock slots/day**, 4,320 in 30 normal days or 4,464 in 31 normal days; DST transition days differ.
 
 Each cron entry uses GitHub's native `timezone: Asia/Jerusalem`, including automatic summer/winter time handling. There is no all-night polling runner or UTC-offset maintenance. The workflow must be on the default branch with Actions enabled. Manual `workflow_dispatch` remains available for deliberate tests outside these slots.

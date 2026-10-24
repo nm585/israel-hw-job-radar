@@ -3,7 +3,7 @@ name: Israel hardware job radar
 on:
   schedule:
     # 144 daily wall-clock slots, including nights; follows Israel DST.
-    - cron: "1,11,21,31,41,51 * * * *"
+    - cron: "7,17,27,37,47,57 * * * *"
       timezone: Asia/Jerusalem
   workflow_dispatch:
     inputs:

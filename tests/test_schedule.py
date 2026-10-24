@@ -31,7 +31,7 @@ def test_exact_daily_slots_no_extras_or_duplicates():
         for h in values(hour, 24):
             for m in values(minute, 60):
                 actual[h * 60 + m] += 1
-    assert set(actual) == set(range(1, 1440, 10))
+    assert set(actual) == set(range(7, 1440, 10))
     assert len(actual) == 144
     assert all(v == 1 for v in actual.values())
 
