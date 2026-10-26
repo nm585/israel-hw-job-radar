@@ -49,6 +49,8 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          HEALTH_TELEGRAM_TOKEN: ${{ secrets.HEALTH_TELEGRAM_TOKEN }}
+          HEALTH_TELEGRAM_CHAT_ID: ${{ secrets.HEALTH_TELEGRAM_CHAT_ID }}
           DRY_RUN: ${{ inputs.dry_run }}
           INCLUDE_EXISTING: ${{ inputs.include_existing }}
         run: |

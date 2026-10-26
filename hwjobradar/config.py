@@ -19,3 +19,7 @@ def load_config(path: str | None = None) -> dict:
 
 def telegram_credentials() -> tuple[str, str]:
     return os.getenv("TELEGRAM_TOKEN", ""), os.getenv("TELEGRAM_CHAT_ID", "")
+
+
+def health_credentials() -> tuple[str, str]:
+    return os.getenv("HEALTH_TELEGRAM_TOKEN", ""), os.getenv("HEALTH_TELEGRAM_CHAT_ID", "")

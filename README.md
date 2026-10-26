@@ -201,3 +201,12 @@ Entry filter update: student, intern, internship, graduate, junior and entry-lev
 Coverage/filter correction: Workday country facets are traversed recursively, including locationHierarchy1, before paging. A Junior/Graduate title is no longer mandatory; relevant non-senior engineering roles with complete descriptions and no detected mandatory prior experience may qualify. Preferred experience is distinct from mandatory requirements. Numeric experience checks remain conservative.
 
 Update 2026-10-24: Google is now polled through official paginated Israel careers results (83 Israel cards in live validation); Microsoft Israel through its official local careers listings and detail pages (18 extracted relevant-title cards). These two companies have been removed from the manual watchlist. Student/intern/part-time matching covers English and Hebrew, including description evidence. Junior/Jr/ג׳וניור titles are temporarily excluded from notifications at the user’s request. Other unverified watchlist entries are still manual; they have not been silently enabled.
+
+
+## ניתוב התראות תקלות — 26.10.2026
+
+משרות נשלחות לבוט המשרות הקיים. תקלות והתאוששות של חברות נשלחות לבוט תחזוקה נפרד באמצעות הסודות HEALTH_TELEGRAM_TOKEN ו־HEALTH_TELEGRAM_CHAT_ID. אין חזרה לבוט הראשי כשבוט התחזוקה חסר או לא זמין.
+
+הבוט הראשי מקבל התראה אם NVIDIA נכשלת בשתי סריקות רצופות, או אם לפחות מחצית מהמקורות הפעילים נכשלו בשתי סריקות רצופות. הסף major_outage_fraction הוא 0.5. נשלחת גם הודעת התאוששות, ולא התראה חוזרת בכל הרצה. חריגה שעוצרת את תוכנת הסריקה עצמה מתריעה בבוט הראשי מיד. תקלה בהתקנת סביבת GitHub או עצירה מוחלטת של המתזמן אינה ניתנת לדיווח מתוך סקריפט שלא הופעל.
+
+הדיווח הזה מזהה כשלים בשליפת רשימות המקורות, ולא מבטיח לזהות כל שינוי באתר או רשימה ריקה שגויה. כשל בבוט התחזוקה לא מפסיק סריקה או שליחת משרות.

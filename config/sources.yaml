@@ -1,6 +1,7 @@
 # elementlabs.ai is unrelated; do not use it for Element Labs Israel.
 db_path: data/seen_jobs.db
 source_fail_alert_after: 2
+major_outage_fraction: 0.5
 filters:
   min_score: 48
 sources:

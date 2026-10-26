@@ -1,7 +1,7 @@
 import argparse
 import logging
 
-from .config import load_config, telegram_credentials
+from .config import load_config, telegram_credentials, health_credentials
 from .fetchers import fetch_source, enrich_job
 from .notify import notify_jobs, notify_text
 from .scoring import score_job, is_candidate, is_student_or_part_time
@@ -10,10 +10,23 @@ from .storage import Storage
 log = logging.getLogger("hwjobradar")
 
 
+def send_health_alert(token, chat_id, message):
+    if not token or not chat_id:
+        log.warning("Health notification skipped: destination is not configured")
+        return
+    try:
+        notify_text(token, chat_id, message)
+    except Exception:
+        # A broken diagnostics bot must not interrupt scanning or job delivery.
+        log.error("Health notification delivery failed")
+
+
 def run(config_path=None, dry_run=False, source_filter=None, no_seed=False, include_seen=False):
     cfg = load_config(config_path)
     storage = Storage(cfg["db_path"])
     token, chat_id = telegram_credentials()
+    health_token, health_chat = health_credentials()
+    failed_sources = []
     min_score = int(cfg.get("filters", {}).get("min_score", 48))
     source_fail_threshold = int(cfg.get("source_fail_alert_after", 2))
 
@@ -33,11 +46,16 @@ def run(config_path=None, dry_run=False, source_filter=None, no_seed=False, incl
             jobs = fetch_source(src)
             recovered = storage.record_success(name)
             if recovered and not dry_run:
-                notify_text(token, chat_id, f"✅ Source recovered: {name}")
+                send_health_alert(health_token, health_chat, f"✅ Source recovered: {name}")
+                if name.casefold() == "nvidia":
+                    send_health_alert(token, chat_id, "✅ סריקת NVIDIA חזרה לפעול.")
         except Exception as e:
+            failed_sources.append(name)
             log.exception("Source failed: %s", name)
             if not dry_run and storage.record_failure(name, source_fail_threshold):
-                notify_text(token, chat_id, f"⚠️ Job source failed twice: {name}. Check the adapter/config.")
+                send_health_alert(health_token, health_chat, f"⚠️ מקור המשרות נכשל {source_fail_threshold} פעמים ברצף: {name}")
+                if name.casefold() == "nvidia":
+                    send_health_alert(token, chat_id, "⚠️ סריקת NVIDIA נכשלה פעמיים ברצף. מקורות אחרים עשויים להמשיך לפעול.")
             continue
 
         priority = int(src.get("priority", 0))
@@ -55,6 +73,17 @@ def run(config_path=None, dry_run=False, source_filter=None, no_seed=False, incl
             if is_candidate(job, min_score):
                 candidates.append(job)
             new_to_mark.append(job)
+
+    if not dry_run and not source_filter:
+        fraction = float(cfg.get("major_outage_fraction", 0.5))
+        major = not sources or len(failed_sources) / len(sources) >= fraction
+        if major:
+            if storage.record_failure("__overall_scan__", source_fail_threshold):
+                message = f"🚨 תקלה רחבה בסריקה: {len(failed_sources)} מתוך {len(sources)} מקורות נכשלו."
+                send_health_alert(token, chat_id, message)
+                send_health_alert(health_token, health_chat, message)
+        elif storage.record_success("__overall_scan__"):
+            send_health_alert(token, chat_id, "✅ הסריקה התאוששה מהתקלה הרחבה.")
 
     # Default first run seeds current jobs silently, preventing an alert storm.
     if first_run and not no_seed and not include_seen and not dry_run:
@@ -92,4 +121,10 @@ def cli():
     args = p.parse_args()
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
                         format="%(asctime)s %(levelname)-7s %(message)s")
-    run(args.config, args.dry_run, args.source, args.no_seed, args.include_seen)
+    try:
+        run(args.config, args.dry_run, args.source, args.no_seed, args.include_seen)
+    except Exception:
+        if not args.dry_run:
+            token, chat_id = telegram_credentials()
+            send_health_alert(token, chat_id, "🚨 הרצת סריקת המשרות נעצרה עקב תקלה. יש לבדוק את ההרצה ב־GitHub.")
+        raise
