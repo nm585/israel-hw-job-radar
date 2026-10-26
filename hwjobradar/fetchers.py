@@ -61,12 +61,12 @@ def fetch_workday(src: dict) -> list[Job]:
 
     for facet in walk_facets(facets):
         param = (facet.get("facetParameter") or "")
-        if param not in ("locationCountry", "Location_Country", "country", "locationHierarchy1"):
+        if param not in ("locationCountry", "Location_Country", "country", "locationHierarchy1", "locations"):
             continue
         ids = []
         for v in facet.get("values") or []:
             desc = (v.get("descriptor") or "").strip().lower()
-            if desc in countries or any(c in desc for c in countries):
+            if desc in countries or any(c in desc for c in countries) or (param == "locations" and "israel" in countries and _looks_israel(desc)):
                 if v.get("id"): ids.append(v["id"])
         if ids:
             applied[param] = ids
@@ -220,6 +220,46 @@ def fetch_ashby(src: dict) -> list[Job]:
                        location=loc, url=j.get("jobUrl", ""), source=name,
                        category=j.get("departmentName", ""), posted=str(j.get("publishedAt", ""))[:10]))
     return out
+
+
+def apple_hydration(html_text):
+    match = re.search(r'window\.__staticRouterHydrationData\s*=\s*JSON\.parse\("(.+?)"\);\s*</script>', html_text, re.DOTALL)
+    if not match:
+        raise RuntimeError("Apple structured data missing")
+    return json.loads(json.loads('"' + match.group(1) + '"'))
+
+
+def embedded_comeet_json(html_text, variable):
+    match = re.search(r"\b" + re.escape(variable) + r"\s*=\s*([\[{])", html_text)
+    if not match:
+        raise RuntimeError("Comeet structured data missing: " + variable)
+    return json.JSONDecoder().raw_decode(html_text[match.end()-1:])[0]
+
+
+def comeet_description(data):
+    details = (data.get("custom_fields") or {}).get("details") or []
+    text = " ".join(str(x.get("value") or "") for x in details if isinstance(x, dict))
+    text += " " + str(data.get("employment_type") or "")
+    return BeautifulSoup(text, "html.parser").get_text(" ", strip=True)
+
+
+def fetch_comeet(src):
+    response = requests.get(src["url"], headers=HEADERS, timeout=30)
+    response.raise_for_status()
+    rows = embedded_comeet_json(response.text, "COMPANY_POSITIONS_DATA")
+    if not isinstance(rows, list):
+        raise RuntimeError("Invalid Comeet position list")
+    jobs = []
+    for row in rows:
+        loc = row.get("location") or {}
+        location = loc.get("name") or loc.get("city") or ""
+        if loc.get("country") not in ("IL", "ISR", "Israel") and not _looks_israel(location):
+            continue
+        url = row.get("url_active_page") or row.get("url_comeet_hosted_page")
+        if not url or not row.get("uid") or not row.get("name"):
+            continue
+        jobs.append(Job(id=str(src.get("id_prefix",src["name"])) + "-" + row["uid"], title=row["name"], company=src["name"], location=location, url=url, source=src["name"], description=comeet_description(row)))
+    return jobs
 
 
 def fetch_apple(src: dict) -> list[Job]:
@@ -391,7 +431,31 @@ def enrich_job(job: Job, timeout: int = 20) -> tuple[Job, bool]:
         r = requests.get(job.url, headers=HEADERS, timeout=timeout, allow_redirects=True)
         if r.status_code >= 400:
             return job, False
+        if "jobs.apple.com/" in job.url:
+            data = apple_hydration(r.text).get("loaderData", {}).get("jobDetails", {}).get("jobsData") or {}
+            if not data.get("postingTitle"):
+                return job, False
+            parts = [data.get(k, "") for k in ("postingTitle", "jobSummary", "description", "minimumQualifications", "preferredQualifications", "educationAndExperience", "additionalRequirements")]
+            job.description = BeautifulSoup(" ".join(x for x in parts if isinstance(x, str)), "html.parser").get_text(" ", strip=True)
+            job.category = " / ".join(data.get("teamNames") or [])
+            locs = data.get("locations") or []
+            job.location = "; ".join(dict.fromkeys(x.get("name", "") for x in locs if isinstance(x, dict))) or job.location
+            return job, bool(job.description)
+        if "comeet.com/jobs/" in job.url:
+            data = embedded_comeet_json(r.text, "POSITION_DATA")
+            if isinstance(data, dict) and data.get("name"):
+                job.description = comeet_description(data)
+                return job, bool(job.description)
         soup = BeautifulSoup(r.text, "html.parser")
+        if "google.com/about/careers/applications/jobs/results/" in job.url:
+            # Google includes an unrelated global search list beside the role.
+            # Score only this posting's qualifications, about text and duties.
+            heading = next((h for h in soup.find_all(["h2", "h3"]) if "Minimum qualifications" in h.get_text()), None)
+            detail = heading.find_parent("div", class_="DkhPwc") if heading else None
+            if detail is None:
+                return job, False
+            job.description = detail.get_text(" ", strip=True)
+            return job, bool(job.description)
         text = " ".join(soup.stripped_strings)
         job.description = text[:40000]
         low = text.lower()
@@ -446,6 +510,7 @@ def fetch_google(src):
 
 
 FETCHERS = {
+    "comeet": fetch_comeet,
     "google": fetch_google,
     "workday": fetch_workday,
     "amazon": fetch_amazon,

@@ -1,4 +1,3 @@
-# Manual sources awaiting verified adapters.
 watchlist:
 - name: Astera Labs Israel
   priority: 10
@@ -52,12 +51,6 @@ watchlist:
   discovery_queries:
   - site:lightmatter.co careers Israel hardware photonics
   israel_presence: unverified
-- name: Samsung SIRC
-  official_url: https://www.comeet.com/jobs/samsung/D4.005
-  priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
-    could not be independently validated. Manual review before re-enabling.
-  checked_on: '2026-10-23'
 - name: Texas Instruments
   official_url: https://careers.ti.com/en/sites/CX/jobs?location=Israel&locationId=300000000361478&locationLevel=country&mode=location
   priority: 11
@@ -128,12 +121,6 @@ watchlist:
   note: Adapter returned no jobs; absence of vacancies is possible, but extraction
     could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'
-- name: proteanTecs
-  official_url: https://www.comeet.com/jobs/proteantecs/D5.00E
-  priority: 11
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
-    could not be independently validated. Manual review before re-enabling.
-  checked_on: '2026-10-23'
 - name: NeuReality
   official_url: https://www.neureality.ai/careers/
   priority: 10
@@ -173,12 +160,6 @@ watchlist:
 - name: SolarEdge
   official_url: https://corporate.solaredge.com/en/careers
   priority: 5
-  note: Adapter returned no jobs; absence of vacancies is possible, but extraction
-    could not be independently validated. Manual review before re-enabling.
-  checked_on: '2026-10-23'
-- name: Quantum Machines
-  official_url: https://www.comeet.com/jobs/quantummachines/D6.000
-  priority: 12
   note: Adapter returned no jobs; absence of vacancies is possible, but extraction
     could not be independently validated. Manual review before re-enabling.
   checked_on: '2026-10-23'

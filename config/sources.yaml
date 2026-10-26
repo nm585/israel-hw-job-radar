@@ -3,7 +3,7 @@ db_path: data/seen_jobs.db
 source_fail_alert_after: 2
 major_outage_fraction: 0.5
 filters:
-  min_score: 48
+  min_score: 50
 sources:
 - type: workday
   name: NVIDIA
@@ -98,7 +98,7 @@ sources:
   priority: 12
   checked_on: '2026-10-23'
   verification: live_adapter_returned_jobs
-- type: html
+- type: comeet
   name: Samsung SIRC
   url: https://www.comeet.com/jobs/samsung/D4.005
   base_url: https://www.comeet.com
@@ -107,11 +107,9 @@ sources:
   default_location: Israel
   id_prefix: samsung
   priority: 11
-  checked_on: '2026-10-23'
-  verification: empty_unverified
-  enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
-    extraction could not be independently validated. Manual review before re-enabling.
+  checked_on: '2026-10-26'
+  verification: live_adapter_returned_jobs
+  enabled: true
 - type: html
   name: Texas Instruments
   url: https://careers.ti.com/en/sites/CX/jobs?location=Israel&locationId=300000000361478&locationLevel=country&mode=location
@@ -339,7 +337,7 @@ sources:
   enabled: false
   verification_note: Adapter returned no jobs; absence of vacancies is possible, but
     extraction could not be independently validated. Manual review before re-enabling.
-- type: html
+- type: comeet
   name: proteanTecs
   url: https://www.comeet.com/jobs/proteantecs/D5.00E
   base_url: https://www.comeet.com
@@ -348,11 +346,9 @@ sources:
   default_location: Israel
   id_prefix: proteantecs
   priority: 11
-  checked_on: '2026-10-23'
-  verification: empty_unverified
-  enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
-    extraction could not be independently validated. Manual review before re-enabling.
+  checked_on: '2026-10-26'
+  verification: live_adapter_returned_jobs
+  enabled: true
 - type: html
   name: Wiliot
   url: https://www.wiliot.com/careers
@@ -528,7 +524,7 @@ sources:
   priority: 9
   checked_on: '2026-10-23'
   verification: live_structured_feed_empty
-- type: html
+- type: comeet
   name: Quantum Machines
   url: https://www.comeet.com/jobs/quantummachines/D6.000
   base_url: https://www.comeet.com
@@ -537,11 +533,9 @@ sources:
   default_location: Israel
   id_prefix: qm
   priority: 12
-  checked_on: '2026-10-23'
-  verification: empty_unverified
-  enabled: false
-  verification_note: Adapter returned no jobs; absence of vacancies is possible, but
-    extraction could not be independently validated. Manual review before re-enabling.
+  checked_on: '2026-10-26'
+  verification: live_adapter_returned_jobs
+  enabled: true
 - type: html
   name: QuamCore
   url: https://www.quamcore.com/category/careers/

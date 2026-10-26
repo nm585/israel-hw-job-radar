@@ -25,6 +25,14 @@ DOMAIN_WEIGHTS = {
     r"\bfirmware\b": 16,
     r"\bembedded\b": 16,
     r"\bhardware validation\b": 14,
+    r"\bhw validation\b": 14,
+    r"\bhardware engineering\b": 24,
+    r"\bsystem integration\b": 18,
+    r"\bsignal integrity\b": 22,
+    r"\bpower integrity\b": 20,
+    r"\bvlsi\b": 22,
+    r"\boptical\b|\boptics\b|\bphotonic": 18,
+    r"\blayout\b": 18,
     r"\bhardware.?software\b": 12,
 }
 
@@ -42,6 +50,7 @@ NOISE_PATTERNS = [
     r"\bqa automation\b", r"\bsoftware qa\b", r"\bweb developer\b",
     r"\bfrontend\b", r"\bfront.?end\b", r"\bbackend\b", r"\bfull.?stack\b",
     r"\bdata scientist\b", r"\bproduct manager\b", r"\bsales\b",
+    r"\bresearch scientist\b",
 ]
 
 SKILL_BONUS = {
@@ -134,7 +143,8 @@ def score_job(job: Job, company_priority: int = 0) -> Job:
         score -= 55
 
     # Software-only roles are noise unless the description has meaningful HW/low-level signals.
-    if any(re.search(p, title, re.I) for p in NOISE_PATTERNS):
+    software_tasks = bool(re.search(r"\bfull[ -]?stack applications\b|\breact\b|\bweb applications\b", job.description, re.I))
+    if any(re.search(p, title, re.I) for p in NOISE_PATTERNS) or software_tasks:
         hw_signal = _sum_matches(full, DOMAIN_WEIGHTS)
         if hw_signal < 18:
             score -= 35
@@ -173,9 +183,21 @@ def allows_no_prior_experience(job: Job) -> bool:
     entry_title = r"\bstudents?\b|\bintern(?:ship)?\b|\bjunior\b|\bjr\b|\bentry[ -]?level\b|\b(?:new|recent) grad(?:uate)?\b|\bgraduate\b|סטודנט|התמחות|מתמחה|ג[׳']?וניור|משרת כניסה"
     # Remove zero-minimum ranges before checking positive year/month requirements.
     clean = re.sub(r"\b0\s*[-–]\s*\d+\s*(?:years?|months?)\s*(?:of\s*)?(?:professional\s*|prior\s*|relevant\s*)?experience", "", text)
-    # Time left in a degree is an education constraint, not prior work experience.
-    clean = re.sub(r"\b(?:at least\s+)?\d+\s+years?\s+(?:before|until|to)\s+graduation\b|\b\d+\s+years?\s+(?:remaining|left)\s+(?:in|of|to complete)\s+(?:the |a |your )?(?:degree|studies|program)\b", "", clean)
-    clean = re.sub(r"\b\d+\s*[- ]?\s*(?:months?|years?)\s+(?:internship|training|program|placement)\b", "", clean)
+    # Education and placement duration are not prior work requirements.
+    duration = r"\d+(?:\.\d+)?\s*(?:[-–]\s*\d+(?:\.\d+)?)?\s*(?:years?|months?)"
+    education = (
+        duration + r"\s*\)?\s*(?:(?:remaining|left)\s+)?(?:before|until|till|to)\s+graduation\b",
+        duration + r"\s+(?:remaining|left)\s+(?:in|of|to complete)\s+(?:the |a |your )?(?:degree|studies|program)\b",
+        duration + r"\s+of\s+(?:their |your |the )?studies\s+(?:still\s+)?(?:remaining|left)\b",
+        duration + r"\s+(?:internship|training|program|placement)\b",
+    )
+    for pattern in education:
+        clean = re.sub(pattern, "", clean)
+    clean = re.sub(r"\b(?:b\.?sc\.?|m\.?sc\.?|bachelor|master)[^.;]{0,150}?\bstudent[^.;]{0,120}?\bwith\s+\d+(?:\.\d+)?\+?\s+years?\s+left\b", "", clean)
+    # Experience explicitly described as an advantage is optional. A required
+    # minimum elsewhere in the same posting is still checked below.
+    optional = r"\b\d+(?:\.\d+)?\s*(?:[-–]\s*\d+)?\s*(?:years?|months?)\s+(?:(?:of|relevant|professional|prior|work|industry)\s+)*(?:experience\s*)?(?:is\s+)?(?:an?\s+)?(?:advantage|plus|preferred|nice.to.have)\b"
+    clean = re.sub(optional, "", clean)
     if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)\b", clean):
         return False
     if re.search(r"\b[1-9]\d*\s*(?:\+|[-–]\s*\d+)?\s*(?:years?|months?)(?:\s+of)?\s+(?:(?:relevant|professional|prior|industry|hands-on|work)\s+)?(?:experience|in\b|working\b|developing\b|designing\b)", clean):
@@ -192,9 +214,29 @@ def allows_no_prior_experience(job: Job) -> bool:
 
 
 def is_candidate(job: Job, min_score: int = 48) -> bool:
+    non_engineering = r"\b(?:product|project|program) management\b|\bproduct manager\b|\bsales\b|\bmarketing\b|\bfinance\b|\bhuman resources\b|\brecruit(?:er|ing|ment)\b"
+    if re.search(non_engineering, job.title, re.I):
+        return False
+    if not requested_work_type(job):
+        return False
     if re.search(r"\bjunior\b|\bjr\.?\b|ג[׳']?וניור", job.title, re.I):
         return False
     entry = r"\bentry[ -]?level\b|\b(?:new|recent) grad(?:uate)?s?\b|\bgraduates?\b|משרת?\s+כניסה|משרות\s+כניסה|בוגר(?:ים|ות)?"
     if re.search(entry, job.title, re.I) and not is_student_or_part_time(job.title):
         return False
     return job.score >= min_score and allows_no_prior_experience(job)
+
+
+def requested_work_type(job: Job) -> bool:
+    """Require student/intern/part-time evidence, not just absence of seniority."""
+    if is_student_or_part_time(job.title) or is_student_or_part_time(job.category):
+        return True
+    text = job.description or ""
+    text = re.sub(r"\b(?:not|no)\s+(?:a\s+)?part[ -]?time\b|לא\s+משרה\s+חלקית", "", text, flags=re.I)
+    return bool(re.search(
+        r"\bpart[ -]?time\s+(?:position|role|job|internship)\b"
+        r"|\b(?:time type|employment type|work schedule)\s*:?\s*part[ -]?time\b"
+        r"|\bcurrently\s+(?:enrolled|pursuing)\b.{0,100}\b(?:degree|bachelor|master|bsc|msc)\b"
+        r"|\b(?:student|internship)\s+(?:position|role)\b"
+        r"|\bworking student\b"
+        r"|משרת\s+סטודנט|משרה\s+חלקית", text, re.I))

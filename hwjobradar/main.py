@@ -1,10 +1,11 @@
 import argparse
 import logging
+import re
 
 from .config import load_config, telegram_credentials, health_credentials
 from .fetchers import fetch_source, enrich_job
 from .notify import notify_jobs, notify_text
-from .scoring import score_job, is_candidate, is_student_or_part_time
+from .scoring import score_job, is_candidate, is_student_or_part_time, SENIOR_PATTERNS
 from .storage import Storage
 
 log = logging.getLogger("hwjobradar")
@@ -58,7 +59,9 @@ def run(config_path=None, dry_run=False, source_filter=None, no_seed=False, incl
         for job in jobs:
             # Early title score avoids fetching every senior/nontechnical detail page.
             score_job(job, priority)
-            if job.score < max(15, min_score - 30) and not is_student_or_part_time(job.title):
+            technical_title = bool(re.search(r"\b(?:engineer|engineering|design|verification|validation|firmware|embedded|fpga|hardware|silicon|rtl|asic|soc)\b", job.title, re.I))
+            senior_title = any(re.search(pattern, job.title, re.I) for pattern in SENIOR_PATTERNS)
+            if job.score < max(15, min_score - 30) and not is_student_or_part_time(job.title) and not (technical_title and not senior_title):
                 continue
             if not include_seen and storage.seen(job.id):
                 continue

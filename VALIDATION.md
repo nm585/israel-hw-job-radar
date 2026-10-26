@@ -13,3 +13,8 @@ Entry filter update: student, intern, internship, graduate, junior and entry-lev
 Coverage/filter correction: Workday country facets are traversed recursively, including locationHierarchy1, before paging. A Junior/Graduate title is no longer mandatory; relevant non-senior engineering roles with complete descriptions and no detected mandatory prior experience may qualify. Preferred experience is distinct from mandatory requirements. Numeric experience checks remain conservative.
 
 Update 2026-10-24: Google is now polled through official paginated Israel careers results (83 Israel cards in live validation); Microsoft Israel through its official local careers listings and detail pages (18 extracted relevant-title cards). These two companies have been removed from the manual watchlist. Student/intern/part-time matching covers English and Hebrew, including description evidence. Junior/Jr/ג׳וניור titles are temporarily excluded from notifications at the user’s request. Other unverified watchlist entries are still manual; they have not been silently enabled.
+
+
+## כיול מבוסס מודעות — 26.10.2026
+
+נאספו 902 רשומות מ־26 מקורות ונבדק סט מפורט של 41 מודעות, מתוכן 15 חיוביות, 20 שליליות ו־6 עמומות. הסף הפעיל הוא כעת 50. על 35 המקרים שסומנו בסט הרגרסיה, המסנן העביר את כל 15 החיוביות וחסם את כל 20 השליליות; זו אינה הבטחה לכיסוי כל השוק, והקבוצות שימשו לפיתוח ולא היו מדגם עיוור. עיקר התיקון הוא חובה לסוג משרה מתאים ולתחום, ולא רק הסף המספרי. SoC Power Analysis and Optimization Engineer של Amazon, מזהה 10588331, נחסמת למרות הציון 76. אזורים כתומים נשארים מותרים לפי בקשת המשתמש. אין שליחת השלמה אוטומטית במסגרת הכיול. ראו AUDIT_2026-10-26.md לפרטים.

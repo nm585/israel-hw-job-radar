@@ -87,7 +87,8 @@ def test_nvidia_plain_engineer_with_optional_experience():
     from hwjobradar.scoring import allows_no_prior_experience
     j = job("RTL Design Engineer, DFT", "B.Sc. Electrical Engineering. Exposure to RTL implementation. Familiarity with verification tools. Ways to stand out: Prior Design or Verification experience.")
     score_job(j, 12)
-    assert is_candidate(j)
+    assert not is_candidate(j)  # Plain full-time engineering is outside the requested work types.
+    assert allows_no_prior_experience(j)
     assert not allows_no_prior_experience(job("Chip Design Engineer", "2+ years of experience in dynamic verification"))
     assert not allows_no_prior_experience(job("Network RDMA Algorithms Architect", "2+ years of experience"))
 
@@ -133,3 +134,31 @@ def test_entry_and_graduate_notifications_temporarily_excluded():
         j = job(title, "RTL FPGA verification")
         j.score = 100
         assert is_candidate(j), title
+
+def test_plain_engineer_does_not_pass_student_only_scope():
+    from hwjobradar.scoring import requested_work_type
+    for title, description in [
+        ("RTL Design Engineer", "RTL ASIC FPGA verification. No experience required."),
+        ("FPGA Engineer", "Our company supports students. We have internship programs."),
+        ("Hardware Engineer", "This is not a part-time position. RTL ASIC verification."),
+    ]:
+        j = job(title, description)
+        j.score = 100
+        assert not requested_work_type(j)
+        assert not is_candidate(j)
+    for description in ["Student position. RTL ASIC", "Currently enrolled in a Bachelor degree. RTL ASIC", "Employment type: Part time. RTL ASIC"]:
+        j = job("Hardware Engineer", description)
+        j.score = 100
+        assert is_candidate(j)
+
+def test_reported_amazon_soc_power_engineer_is_not_student():
+    for desc in ["BSc Electrical Engineering. SoC RTL power analysis. No experience required.", "BSc Electrical Engineering. Minimum 4 years of experience in chip design."]:
+        j = job("SoC Power Analysis and Optimization Engineer, Graviton Team", desc)
+        j.score = 100
+        assert not is_candidate(j)
+
+def test_business_internships_are_not_hardware_jobs_even_with_high_score():
+    for title in ["Product Management Internship Opportunities", "Sales Engineering Intern", "Marketing Student", "Finance Intern"]:
+        j = job(title, "Work with hardware engineering teams. Currently enrolled in a BSc degree.")
+        j.score = 100
+        assert not is_candidate(j)
