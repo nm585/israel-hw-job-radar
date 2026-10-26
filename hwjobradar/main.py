@@ -47,15 +47,11 @@ def run(config_path=None, dry_run=False, source_filter=None, no_seed=False, incl
             recovered = storage.record_success(name)
             if recovered and not dry_run:
                 send_health_alert(health_token, health_chat, f"✅ Source recovered: {name}")
-                if name.casefold() == "nvidia":
-                    send_health_alert(token, chat_id, "✅ סריקת NVIDIA חזרה לפעול.")
         except Exception as e:
             failed_sources.append(name)
             log.exception("Source failed: %s", name)
             if not dry_run and storage.record_failure(name, source_fail_threshold):
                 send_health_alert(health_token, health_chat, f"⚠️ מקור המשרות נכשל {source_fail_threshold} פעמים ברצף: {name}")
-                if name.casefold() == "nvidia":
-                    send_health_alert(token, chat_id, "⚠️ סריקת NVIDIA נכשלה פעמיים ברצף. מקורות אחרים עשויים להמשיך לפעול.")
             continue
 
         priority = int(src.get("priority", 0))

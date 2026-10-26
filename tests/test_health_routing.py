@@ -24,10 +24,13 @@ def test_single_source_outage_never_alerts_main_and_recovery_uses_health(monkeyp
     failed.clear();run();assert [a[0] for a in alerts]==['health','health']
 
 
-def test_nvidia_exception_alerts_main_after_two_failures(monkeypatch,tmp_path):
-    alerts=setup_scan(monkeypatch,tmp_path,['NVIDIA','Intel','CEVA'],{'NVIDIA'})
+def test_nvidia_outage_and_recovery_only_use_support_bot(monkeypatch,tmp_path):
+    failed={'NVIDIA'}
+    alerts=setup_scan(monkeypatch,tmp_path,['NVIDIA','Intel','CEVA'],failed)
     run(); assert alerts==[]
-    run(); assert [a[0] for a in alerts]==['health','main']
+    run(); assert [a[0] for a in alerts]==['health']
+    failed.clear(); run()
+    assert [a[0] for a in alerts]==['health','health']
 
 
 def test_major_outage_alerts_main_once_and_recovers(monkeypatch,tmp_path):
