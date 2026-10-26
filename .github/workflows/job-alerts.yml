@@ -15,6 +15,10 @@ on:
         description: "Send all current matching jobs once, including previously seen jobs"
         type: boolean
         default: false
+      send_audit_misses:
+        description: "Send only the seven verified audit misses, subject to current filters"
+        type: boolean
+        default: false
 
 concurrency:
   group: israel-hw-job-radar
@@ -53,8 +57,15 @@ jobs:
           HEALTH_TELEGRAM_CHAT_ID: ${{ secrets.HEALTH_TELEGRAM_CHAT_ID }}
           DRY_RUN: ${{ inputs.dry_run }}
           INCLUDE_EXISTING: ${{ inputs.include_existing }}
+          SEND_AUDIT_MISSES: ${{ inputs.send_audit_misses }}
         run: |
-          if [ "$DRY_RUN" = "true" ]; then
+          if [ "$SEND_AUDIT_MISSES" = "true" ]; then
+            if [ "$DRY_RUN" = "true" ]; then
+              python -m hwjobradar.catchup config/audit-misses-2026-10-26.yaml --dry-run
+            else
+              python -m hwjobradar.catchup config/audit-misses-2026-10-26.yaml
+            fi
+          elif [ "$DRY_RUN" = "true" ]; then
             python run.py --dry-run --no-seed -v
           elif [ "$INCLUDE_EXISTING" = "true" ]; then
             python run.py --include-seen

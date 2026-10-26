@@ -426,6 +426,7 @@ def enrich_job(job: Job, timeout: int = 20) -> tuple[Job, bool]:
                 return job, False
             response.raise_for_status()
             info = response.json().get("jobPostingInfo", {})
+            job.title = info.get("title") or job.title
             job.description = BeautifulSoup(info.get("jobDescription", ""), "html.parser").get_text(" ", strip=True)
             return job, bool(job.description.strip())
         r = requests.get(job.url, headers=HEADERS, timeout=timeout, allow_redirects=True)
@@ -435,6 +436,7 @@ def enrich_job(job: Job, timeout: int = 20) -> tuple[Job, bool]:
             data = apple_hydration(r.text).get("loaderData", {}).get("jobDetails", {}).get("jobsData") or {}
             if not data.get("postingTitle"):
                 return job, False
+            job.title = data["postingTitle"]
             parts = [data.get(k, "") for k in ("postingTitle", "jobSummary", "description", "minimumQualifications", "preferredQualifications", "educationAndExperience", "additionalRequirements")]
             job.description = BeautifulSoup(" ".join(x for x in parts if isinstance(x, str)), "html.parser").get_text(" ", strip=True)
             job.category = " / ".join(data.get("teamNames") or [])

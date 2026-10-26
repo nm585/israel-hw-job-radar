@@ -1,0 +1,37 @@
+# Explicit one-time list. Every job is revalidated against current filters before sending.
+jobs:
+- source: Marvell
+  url: https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers/job/Yokneam/Signal-Integrity-Intern_2604464
+  id: marvell-Signal-Integrity-Intern_2604464
+  title: Signal Integrity Intern
+  location: Yokneam
+- source: Amazon / Annapurna Labs
+  url: https://www.amazon.jobs/en/jobs/10556590/software-engineer-student-virtual-platforms-annapurna-labs
+  id: amazon-10556590
+  title: Software Engineer Student, Virtual Platforms, Annapurna Labs
+  location: Tel Aviv-Yafo, Tel Aviv, ISR
+- source: Amazon / Annapurna Labs
+  url: https://www.amazon.jobs/en/jobs/10506556/system-integration-student-spiv-team
+  id: amazon-10506556
+  title: System Integration Student, SPIV team
+  location: Haifa, Haifa, ISR
+- source: Amazon / Annapurna Labs
+  url: https://www.amazon.jobs/en/jobs/10577304/system-integration-student-nitro-team-annapurna-labs
+  id: amazon-10577304
+  title: System Integration Student, Nitro Team, Annapurna Labs
+  location: Haifa, Haifa, ISR
+- source: Amazon / Annapurna Labs
+  url: https://www.amazon.jobs/en/jobs/10533872/hw-validation-student-nitro-team-annapurna-labs
+  id: amazon-10533872
+  title: HW Validation Student, Nitro Team, Annapurna Labs
+  location: Haifa, Haifa, ISR
+- source: Apple
+  url: https://jobs.apple.com/en-il/details/200676938
+  id: apple-200676938
+  title: Hardware Engineering Student
+  location: Haifa; Herzliya; Jerusalem
+- source: Apple
+  url: https://jobs.apple.com/en-il/details/200625015
+  id: apple-200625015
+  title: Advanced Optics Design&Validation Student - Camera HW
+  location: Herzliya
